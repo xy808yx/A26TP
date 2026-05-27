@@ -4,284 +4,258 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Return to Training</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0e0e0e;--surface:#161616;--surface2:#1c1c1c;--border:#2a2a2a;--text:#e8e4df;--dim:#8a8680;--muted:#5a5652;--accent:#c9a96e;--accent-dim:#8a7548;--white:#f5f2ed;--red:#c45c4a;--green:#5a9a5a}
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased}
-  .nav{position:sticky;top:0;z-index:100;background:rgba(14,14,14,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px}
-  .nav-inner{max-width:640px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-  .nav-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white)}
-  .nav-sub{font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-top:2px}
-  .tabs{display:flex;gap:3px}
-  .tab{background:transparent;border:1px solid var(--border);border-radius:6px;padding:6px 12px;color:var(--dim);font-size:11px;font-weight:600;cursor:pointer;text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace;transition:all 0.2s}
-  .tab.active{background:var(--accent-dim);border-color:var(--accent-dim);color:var(--white)}
-  .container{max-width:640px;margin:0 auto;padding:16px 20px 100px}
-  .section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:10px;margin-top:20px}
-  .section-label:first-child{margin-top:0}
-  .section-note{font-size:13px;color:var(--dim);font-style:italic;margin-bottom:12px;line-height:1.5;padding-left:14px;border-left:2px solid var(--border)}
-  .switcher{display:flex;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px}
-  .sw-btn{flex:1;background:var(--surface);border:none;padding:12px 6px;cursor:pointer;text-align:center;transition:all 0.2s}
-  .sw-btn:hover{background:var(--surface2)}
-  .sw-btn.active{background:var(--surface2)}
-  .sw-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
-  .sw-btn.active .sw-label{color:var(--accent)}
-  .sw-val{font-size:13px;font-weight:600;color:var(--dim)}
-  .sw-btn.active .sw-val{color:var(--white)}
-  .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:16px}
-  .prog-fill{height:100%;border-radius:2px;transition:width 0.3s,background 0.3s}
-  .check-item{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:5px;cursor:pointer;transition:all 0.2s;user-select:none}
-  .check-item.done{background:rgba(90,154,90,0.07);border-color:rgba(90,154,90,0.27)}
-  .check-box{width:24px;height:24px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:13px;font-weight:700;flex-shrink:0;transition:all 0.2s}
-  .check-item.done .check-box{border-color:var(--green);background:rgba(90,154,90,0.14)}
-  .check-name{font-size:13px;font-weight:500;color:var(--white);transition:color 0.2s}
-  .check-item.done .check-name{color:var(--green)}
-  .check-rx{font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-top:1px}
-  .check-tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--accent-dim);letter-spacing:1px;padding:2px 6px;background:var(--surface2);border-radius:3px;margin-left:auto;flex-shrink:0}
-  .tbl-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px}
-  table{width:100%;border-collapse:collapse}
-  thead th{background:var(--surface2);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 12px;text-align:left;font-weight:500;border-bottom:1px solid var(--border)}
-  tbody td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
-  tbody tr:last-child td{border-bottom:none}
-  tbody tr:nth-child(even){background:var(--surface)}
-  td a{color:var(--accent);text-decoration:none;font-size:12px}
-  td a:hover{text-decoration:underline}
-  .mob-check{display:flex;align-items:center;gap:10px;padding:6px 0;cursor:pointer;user-select:none}
-  .mob-box{width:18px;height:18px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:10px;font-weight:700;flex-shrink:0;transition:all 0.2s}
-  .mob-check.done .mob-box{border-color:var(--green);background:rgba(90,154,90,0.14)}
-  .mob-text{font-size:12px;color:var(--dim);transition:color 0.2s}
-  .mob-check.done .mob-text{color:var(--green)}
-  .mob-warn{color:var(--red);font-weight:500;font-size:10px;text-transform:uppercase;letter-spacing:0.5px}
-  .gate{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px}
-  .gate-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--surface);border-bottom:1px solid var(--border)}
-  .gate-name{font-weight:700;font-size:13px;color:var(--white)}
-  .gate-target{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:1px}
-  .gate-body{padding:12px 16px}
-  .gate-test{font-size:13px;color:var(--text);margin-bottom:8px;font-weight:500}
-  .gate-test span{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent-dim);margin-right:4px;text-transform:uppercase;letter-spacing:1px}
-  .gate-li{font-size:12px;color:var(--dim);padding:2px 0 2px 14px;position:relative}
-  .gate-li::before{content:'→';position:absolute;left:0;color:var(--accent-dim)}
-  .tl{position:relative;padding-left:24px}
-  .tl::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--border)}
-  .tl-item{position:relative;padding-bottom:18px}
-  .tl-item:last-child{padding-bottom:0}
-  .tl-item::before{content:'';position:absolute;left:-21px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--bg)}
-  .tl-when{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent-dim);letter-spacing:1px}
-  .tl-what{font-size:13px;color:var(--text);font-weight:600;margin:1px 0}
-  .tl-detail{font-size:12px;color:var(--dim)}
-  .bio{margin-bottom:16px;padding-left:16px;border-left:2px solid var(--border)}
-  .bio.warn{border-left-color:var(--red)}
-  .bio-title{font-weight:700;font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-  .bio.warn .bio-title{color:var(--red)}
-  .bio p{font-size:13px;color:var(--dim);line-height:1.6}
-  .info-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:8px}
-  .info-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:3px}
-  .info-detail{font-size:12px;color:var(--dim);line-height:1.5}
-  .reset-row{text-align:center;margin-top:16px}
-  .btn-ghost{background:transparent;border:1px solid var(--border);border-radius:6px;padding:7px 16px;color:var(--muted);font-size:11px;cursor:pointer;font-family:'JetBrains Mono',monospace}
-  .footer-line{text-align:center;margin-top:24px;padding-top:16px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px}
+:root{--bg:#0c0c0c;--surface:#151515;--surface2:#1a1a1a;--border:#262626;--border-h:#333;--text:#e8e4df;--dim:#908c86;--muted:#5c5955;--accent:#c9a96e;--accent-dim:#8a7548;--accent-glow:rgba(201,169,110,0.08);--white:#f5f2ed;--red:#c45c4a;--green:#5a9a5a;--green-bg:rgba(90,154,90,0.07);--green-border:rgba(90,154,90,0.25)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased}
+.nav{position:sticky;top:0;z-index:100;background:rgba(12,12,12,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 24px}
+.nav-inner{max-width:680px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.nav-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);letter-spacing:-0.3px}
+.nav-sub{font-size:12px;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-top:3px;letter-spacing:0.5px}
+.tabs{display:flex;gap:4px}
+.tab{background:transparent;border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--dim);font-size:12px;font-weight:600;cursor:pointer;text-transform:uppercase;letter-spacing:1.5px;font-family:'JetBrains Mono',monospace;transition:all 0.25s}
+.tab:hover{border-color:var(--border-h);color:var(--text)}
+.tab.active{background:var(--accent-dim);border-color:var(--accent-dim);color:var(--white)}
+.container{max-width:680px;margin:0 auto;padding:20px 24px 120px}
+.sl{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;margin-top:24px}
+.sl:first-child{margin-top:0}
+.sn{font-size:14px;color:var(--dim);font-style:italic;margin-bottom:14px;line-height:1.6;padding:10px 16px;border-left:2px solid var(--accent-dim);background:var(--accent-glow);border-radius:0 8px 8px 0}
+.switcher{display:flex;gap:1px;background:var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px}
+.sw{flex:1;background:var(--surface);border:none;padding:16px 8px;cursor:pointer;text-align:center;transition:all 0.25s}
+.sw:hover{background:var(--surface2)}
+.sw.active{background:var(--surface2);box-shadow:inset 0 -2px 0 var(--accent)}
+.sw .sl2{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.sw.active .sl2{color:var(--accent)}
+.sw .sv{font-size:15px;font-weight:600;color:var(--dim)}
+.sw.active .sv{color:var(--white)}
+.pb{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:18px}
+.pf{height:100%;border-radius:3px;transition:width 0.4s ease,background 0.3s}
+.ci{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:6px;cursor:pointer;transition:all 0.25s;user-select:none}
+.ci:hover{border-color:var(--border-h);background:var(--surface2)}
+.ci.done{background:var(--green-bg);border-color:var(--green-border)}
+.ci.done:hover{background:rgba(90,154,90,0.12)}
+.cb{width:28px;height:28px;border-radius:7px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:15px;font-weight:700;flex-shrink:0;transition:all 0.25s}
+.ci.done .cb{border-color:var(--green);background:rgba(90,154,90,0.15)}
+.cn{font-size:15px;font-weight:500;color:var(--white);transition:color 0.2s;line-height:1.3}
+.ci.done .cn{color:var(--green)}
+.cr{font-size:13px;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.ct{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent-dim);letter-spacing:1px;padding:3px 8px;background:var(--surface2);border-radius:4px;margin-left:auto;flex-shrink:0;border:1px solid var(--border)}
+.tw{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+table{width:100%;border-collapse:collapse}
+thead th{background:var(--surface2);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:12px 14px;text-align:left;font-weight:500;border-bottom:1px solid var(--border)}
+tbody td{padding:12px 14px;font-size:14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--surface)}
+td a{color:var(--accent);text-decoration:none;font-size:13px;font-weight:500}
+td a:hover{text-decoration:underline}
+.mc{display:flex;align-items:center;gap:12px;padding:8px 0;cursor:pointer;user-select:none}
+.mb{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:11px;font-weight:700;flex-shrink:0;transition:all 0.2s}
+.mc.done .mb{border-color:var(--green);background:rgba(90,154,90,0.15)}
+.mt2{font-size:14px;color:var(--dim);transition:color 0.2s;line-height:1.4}
+.mc.done .mt2{color:var(--green)}
+.mw{color:var(--red);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+.gate{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.gate.cleared{border-color:var(--green-border);opacity:0.6}
+.gh{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:var(--surface);border-bottom:1px solid var(--border)}
+.gate.cleared .gh{background:var(--green-bg)}
+.gn{font-weight:700;font-size:15px;color:var(--white)}
+.gate.cleared .gn{color:var(--green)}
+.gt2{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:1px}
+.gate.cleared .gt2{color:var(--green)}
+.gb{padding:14px 18px}
+.gtest{font-size:15px;color:var(--text);margin-bottom:10px;font-weight:500;line-height:1.5}
+.gtest span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-dim);margin-right:6px;text-transform:uppercase;letter-spacing:1px}
+.gl{font-size:14px;color:var(--dim);padding:3px 0 3px 16px;position:relative;line-height:1.5}
+.gl::before{content:'→';position:absolute;left:0;color:var(--accent-dim)}
+.tl{position:relative;padding-left:28px}
+.tl::before{content:'';position:absolute;left:7px;top:7px;bottom:7px;width:1px;background:var(--border)}
+.ti2{position:relative;padding-bottom:22px}
+.ti2:last-child{padding-bottom:0}
+.ti2::before{content:'';position:absolute;left:-24px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--bg)}
+.ti2.cleared::before{background:var(--green)}
+.ti2.current::before{background:var(--accent);box-shadow:0 0 8px rgba(201,169,110,0.4)}
+.tw3{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-dim);letter-spacing:1px}
+.tw4{font-size:15px;color:var(--text);font-weight:600;margin:2px 0}
+.td3{font-size:14px;color:var(--dim)}
+.bio{margin-bottom:18px;padding:12px 16px;border-left:2px solid var(--border);border-radius:0 8px 8px 0;background:var(--surface)}
+.bio.warn{border-left-color:var(--red)}
+.bio-t{font-weight:700;font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.bio.warn .bio-t{color:var(--red)}
+.bio p{font-size:14px;color:var(--dim);line-height:1.7}
+.ic{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+.it2{font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px}
+.id2{font-size:14px;color:var(--dim);line-height:1.6}
+.rr{text-align:center;margin-top:20px}
+.bg2{background:transparent;border:1px solid var(--border);border-radius:8px;padding:10px 20px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all 0.2s}
+.bg2:hover{border-color:var(--border-h);color:var(--dim)}
+.fl{text-align:center;margin-top:28px;padding-top:18px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px}
+.accent-line{height:2px;background:linear-gradient(90deg,transparent,var(--accent-dim),transparent);margin-bottom:20px;border-radius:1px}
 </style>
 </head>
 <body>
-<div class="nav">
-  <div class="nav-inner">
-    <div><div class="nav-title">Return to Training</div><div class="nav-sub" id="nav-sub"></div></div>
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab('today')" id="tab-today">TODAY</button>
-      <button class="tab" onclick="switchTab('mobility')" id="tab-mobility">MOBILITY</button>
-      <button class="tab" onclick="switchTab('reference')" id="tab-reference">REF</button>
-    </div>
-  </div>
-</div>
+<div class="nav"><div class="nav-inner"><div><div class="nav-title">Return to Training</div><div class="nav-sub" id="ns"></div></div><div class="tabs">
+<button class="tab active" onclick="st('today')" id="tab-today">TODAY</button>
+<button class="tab" onclick="st('mobility')" id="tab-mobility">MOBILITY</button>
+<button class="tab" onclick="st('reference')" id="tab-reference">REF</button>
+</div></div></div>
 <div class="container" id="app"></div>
 <script>
-const DAILY=[
-  {id:"d1",name:"R. Posterior Tibial Nerve Floss",rx:"2-3 × 10 oscillations",link:"https://youtu.be/x1AtxQkJCu0"},
-  {id:"d2",name:"Ulnar Nerve Floss",rx:"2-3 × 10 / side"},
-  {id:"d3",name:"Median Nerve Floss",rx:"2-3 × 10 / side"},
-  {id:"d4",name:"R. Popliteus Release",rx:"Per therapist video — daily",link:"https://www.youtube.com/watch?v=HGE8_co6Dn0"},
-  {id:"d5",name:"Dead Hangs",rx:"Accumulate 2 min",skipOn:"pullups"},
-  {id:"d6",name:"Double-Leg Heel Raises",rx:"1 × 25 continuous (target)"},
-  {id:"d7",name:"Iso Calf Hold — Bent Knee",rx:"Start 3×20-30s → build to 5×45s"},
-  {id:"d8",name:"Iso Calf Hold — Straight Knee",rx:"Start 3×20-30s → build to 5×45s"},
+const D=[
+{id:"d1",n:"R. Posterior Tibial Nerve Floss",r:"2-3 × 10 oscillations",l:"https://youtu.be/x1AtxQkJCu0"},
+{id:"d2",n:"Ulnar Nerve Floss",r:"2-3 × 10 / side"},
+{id:"d3",n:"Median Nerve Floss",r:"2-3 × 10 / side"},
+{id:"d4",n:"R. Popliteus Release",r:"Per therapist — daily",l:"https://www.youtube.com/watch?v=HGE8_co6Dn0"},
+{id:"d5",n:"Dead Hangs",r:"Accumulate 2 min",skip:"pull"},
+{id:"d6",n:"Chin Tucks",r:"10 × 5s × 2 sets — daily for FHP"},
+{id:"d7",n:"Eccentric Heel Lower — Straight Knee",r:"3 × 15 off step, slow descent"},
+{id:"d8",n:"Eccentric Heel Lower — Bent Knee",r:"3 × 15 off step, slow descent"},
 ];
-const WEIGHTS=[
-  {id:"w0",name:"Lu Raises (plates, light)",rx:"2 × 15",tag:"WARM"},
-  {id:"w1",name:"Landmine Press (kneeling)",rx:"4 × 8-10 · full rest",tag:"1"},
-  {id:"w2",name:"Landmine Rows (single-arm)",rx:"3 × 10/side · full rest",tag:"2"},
-  {id:"w3",name:"Trap 3 Raises",rx:"3 × 12-15 · 2s hold at top",tag:"3"},
-  {id:"w4",name:"Band Face Pulls",rx:"3 × 15 · ext. rotation at top",tag:"4"},
-  {id:"w5",name:"Hanging Leg Raises",rx:"3 × 8-10",tag:"5"},
+const PULL=[
+{id:"p1",n:"Pull-ups",r:"4 × max · 3-5s hang each rep",t:"1"},
+{id:"p2",n:"Landmine Rows (single-arm)",r:"3 × 10/side · full rest",t:"2"},
+{id:"p3",n:"Trap 3 Raises",r:"3 × 12-15 · 2s hold at top",t:"3"},
+{id:"p4",n:"Face Pulls",r:"3 × 15 · ext. rotation at top",t:"4"},
+{id:"p5",n:"Med Ball Slams",r:"3 × 8 · max intent",t:"5"},
+{id:"p6",n:"Pool or Bike",r:"30-60 min · easy swim / zone 1-2 ride",t:"CARDIO"},
 ];
-const PULLUPS=[
-  {id:"p1",name:"Pull-ups",rx:"4 × max · 3-5s hang pause each rep"},
-  {id:"p2",name:"Med Ball Slams",rx:"3 × 8 · max intent"},
-  {id:"p3",name:"Pool",rx:"30-60 min · easy swimming, gentle kicking"},
+const PUSH=[
+{id:"s0",n:"Lu Raises (plates, light)",r:"2 × 15",t:"WARM"},
+{id:"s1",n:"Landmine Press (kneeling)",r:"4 × 8-10 · full rest",t:"1"},
+{id:"s2",n:"Decline Push-ups (feet on bench)",r:"3 × max",t:"2"},
+{id:"s3",n:"Hanging Leg Raises",r:"3 × 8-10",t:"3"},
 ];
-const MOB_ROLL=[
-  {id:"m01",text:"Feet — golf ball · 3 min/foot"},
-  {id:"m02",text:"Calves — foam roller & lacrosse ball",warn:"AVOID INJURY SITE"},
-  {id:"m03",text:"IT band / quad / adductors · 15 passes/leg"},
-  {id:"m04",text:"SMR glutes · 60s/leg"},
-  {id:"m05",text:"Ab smash with med ball"},
-  {id:"m06",text:"Thoracic extension / foam roll back"},
-  {id:"m07",text:"Back — ball roll against wall"},
-  {id:"m08",text:"Pecs/shoulders — lacrosse ball + rack stretch"},
+const MR=[
+{id:"m01",t:"Feet — golf ball · 3 min/foot"},
+{id:"m02",t:"Calves — foam roller & lacrosse ball",w:"AVOID INJURY SITE"},
+{id:"m03",t:"IT band / quad / adductors · 15 passes/leg"},
+{id:"m04",t:"SMR glutes · 60s/leg"},
+{id:"m05",t:"Ab smash with med ball"},
+{id:"m06",t:"Thoracic extension / foam roll back"},
+{id:"m07",t:"Back — ball roll against wall"},
+{id:"m08",t:"Pecs/shoulders — lacrosse ball + rack stretch"},
 ];
-const MOB_STRETCH=[
-  {id:"m10",text:"Deep squat — 60s",warn:"MODIFIED DEPTH"},
-  {id:"m11",text:"Cossack squats — 10/side",warn:"REDUCE DEPTH"},
-  {id:"m12",text:"Hamstring nerve glides — 10/side"},
-  {id:"m13",text:"Hamstring stretch — 60s/side"},
-  {id:"m14",text:"90/90s — 10/side"},
-  {id:"m15",text:"90/90s hip flexor — 10/side"},
-  {id:"m16",text:"Figure 4 stretch — 30s/side"},
-  {id:"m17",text:"Frog stretch — 60s"},
-  {id:"m18",text:"Couch stretch — 30s × 2/side"},
-  {id:"m19",text:"World's greatest stretch — 5/side · 5s holds"},
-  {id:"m20",text:"Spiderman steps — 5/leg (slow)"},
-  {id:"m21",text:"Iron cross — 5/side"},
-  {id:"m22",text:"Myo stretch"},
-  {id:"m23",text:"Child's pose — 60s"},
-  {id:"m24",text:"Cobra — 60s"},
-  {id:"m25",text:"Chin tucks — 10 × 5s × 2 sets"},
-  {id:"m26",text:"Neck stretches (kneeling) — 30s/side"},
-  {id:"m27",text:"Diaphragmatic breathing — 2 min"},
-  {id:"m28",text:"Banded shoulder dislocations — 20"},
-  {id:"m29",text:"Doorway stretch — 30s × 3"},
+const MS=[
+{id:"m10",t:"Deep squat — 60s"},
+{id:"m11",t:"Cossack squats — 10/side"},
+{id:"m12",t:"Hamstring nerve glides — 10/side"},
+{id:"m13",t:"Hamstring stretch — 60s/side"},
+{id:"m14",t:"90/90s — 10/side"},
+{id:"m15",t:"90/90s hip flexor — 10/side"},
+{id:"m16",t:"Figure 4 stretch — 30s/side"},
+{id:"m17",t:"Frog stretch — 60s"},
+{id:"m18",t:"Couch stretch — 30s × 2/side"},
+{id:"m19",t:"World's greatest stretch — 5/side · 5s holds"},
+{id:"m20",t:"Spiderman steps — 5/leg (slow)"},
+{id:"m21",t:"Iron cross — 5/side"},
+{id:"m22",t:"Myo stretch"},
+{id:"m23",t:"Child's pose — 60s"},
+{id:"m24",t:"Cobra — 60s"},
+{id:"m25",t:"Neck stretches (kneeling) — 30s/side"},
+{id:"m26",t:"Diaphragmatic breathing — 2 min"},
+{id:"m27",t:"Banded shoulder dislocations — 20"},
+{id:"m28",t:"Doorway stretch — 30s × 3"},
 ];
-const MOB_OPT=[{id:"m30",text:"Fire hydrants"},{id:"m31",text:"Alternating scorpions"}];
-const THERAPIST=[
-  {name:"Hip Mobility Series (Lawson McDonald)",note:"General hip compensation clearing",link:"https://www.youtube.com/watch?v=tO_2mB53Bgs"},
-  {name:"Left Obturator Nerve Floss",note:"Contralateral compensation — won't self-resolve quickly",link:"https://youtu.be/VEbVmzcIiv8"},
-  {name:"Right Femoral Nerve Floss",note:"Only if right anterior thigh symptoms present",link:"https://www.youtube.com/watch?v=KIYNdFvM4vc"},
+const MO=[{id:"m30",t:"Fire hydrants"},{id:"m31",t:"Alternating scorpions"}];
+const TH=[
+{n:"Hip Mobility Series (Lawson McDonald)",no:"General hip compensation clearing",l:"https://www.youtube.com/watch?v=tO_2mB53Bgs"},
+{n:"Left Obturator Nerve Floss",no:"Contralateral compensation",l:"https://youtu.be/VEbVmzcIiv8"},
+{n:"Right Femoral Nerve Floss",no:"Only if R. anterior thigh symptoms",l:"https://www.youtube.com/watch?v=KIYNdFvM4vc"},
 ];
+const DY=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function tk(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+let S={tab:"today",wo:"pull",ck:{},mk:{}};
+function ld(){try{S.ck=JSON.parse(localStorage.getItem("rtc4")||"{}")}catch(e){}try{S.mk=JSON.parse(localStorage.getItem("rtm4")||"{}")}catch(e){}try{const w=localStorage.getItem("rtw4");if(w)S.wo=w}catch(e){}}
+function sv(){localStorage.setItem("rtc4",JSON.stringify(S.ck));localStorage.setItem("rtm4",JSON.stringify(S.mk));localStorage.setItem("rtw4",S.wo)}
+function tg(id){const k=tk();if(!S.ck[k])S.ck[k]=[];const c=S.ck[k];S.ck[k]=c.includes(id)?c.filter(x=>x!==id):[...c,id];sv();rn()}
+function tm(id){const k=tk();if(!S.mk[k])S.mk[k]=[];const c=S.mk[k];S.mk[k]=c.includes(id)?c.filter(x=>x!==id):[...c,id];sv();rn()}
+function sw2(w){S.wo=w;sv();rn()}
+function st(t){S.tab=t;document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');rn()}
+function rt(){const k=tk();delete S.ck[k];delete S.mk[k];sv();rn()}
+function ci(i,ck,sl){const d=ck.includes(i.id);const lk=sl&&i.l?` <a href="${i.l}" target="_blank" onclick="event.stopPropagation()" style="font-size:12px;color:var(--accent);font-weight:500">▶ video</a>`:'';return `<div class="ci ${d?'done':''}" onclick="tg('${i.id}')"><div class="cb">${d?'✓':''}</div><div style="flex:1"><div class="cn">${i.n}${lk}</div><div class="cr">${i.r}</div></div>${i.t?`<span class="ct">${i.t}</span>`:''}</div>`}
+function mi2(i,ck){const d=ck.includes(i.id);const w=i.w?` <span class="mw">${i.w}</span>`:'';return `<div class="mc ${d?'done':''}" onclick="tm('${i.id}')"><div class="mb">${d?'✓':''}</div><div class="mt2">${i.t}${w}</div></div>`}
 
-function todayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
-const DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-let state={tab:"today",workout:"weights",checks:{},mobChecks:{}};
-
-function load(){
-  try{state.checks=JSON.parse(localStorage.getItem("rtc")||"{}")}catch(e){}
-  try{state.mobChecks=JSON.parse(localStorage.getItem("rtm")||"{}")}catch(e){}
-  try{const w=localStorage.getItem("rtw");if(w)state.workout=w}catch(e){}
+function rn(){
+const k=tk(),dow=new Date().getDay(),ck=S.ck[k]||[],mk=S.mk[k]||[];
+document.getElementById("ns").textContent=`${DY[dow]} · ${k} · Phase 4`;
+const a=document.getElementById("app");
+if(S.tab==="today"){
+const isPull=S.wo==="pull";
+const df=D.filter(d=>!(isPull&&d.skip==="pull"));
+const dd=df.filter(d=>ck.includes(d.id)).length;
+const dp=Math.round((dd/df.length)*100);
+let wi=[],wl="",wn="";
+if(S.wo==="pull"){wi=PULL;wl="PULL + CARDIO";wn="Straight sets, full rest. Hang pause replaces dead hangs. Consistent reps across 4 sets → add weight."}
+else if(S.wo==="push"){wi=PUSH;wl="PUSH";wn="Straight sets, full rest 90-120s. Top of rep range for 2 consecutive sessions → add 5 lbs."}
+const wc=wi.length,wd=wi.filter(w=>ck.includes(w.id)).length;
+const wp=wc?Math.round((wd/wc)*100):0;
+let h=`<div class="accent-line"></div>`;
+h+=`<div class="switcher">${["pull","push","rest","off"].map(w=>{
+const l={pull:"Pull + Cardio",push:"Push",rest:"Rest / Mobility",off:"Off"};
+const i={pull:"🏊",push:"🏋️",rest:"🧘",off:"💤"};
+return `<button class="sw ${S.wo===w?'active':''}" onclick="sw2('${w}')"><div class="sl2">${w==="off"?"off":"workout"}</div><div class="sv">${i[w]} ${l[w]}</div></button>`}).join("")}</div>`;
+h+=`<div class="pb"><div class="pf" style="width:${dp}%;background:${dp===100?'var(--green)':'var(--accent)'}"></div></div>`;
+h+=`<div class="sl">Daily Block</div>`;
+if(isPull) h+=`<div class="sn">Dead hangs skipped — 3-5s hang pause on each pull-up rep instead.</div>`;
+h+=df.map(d=>ci(d,ck,true)).join("");
+if(S.wo==="pull"||S.wo==="push"){
+h+=`<div class="sl" style="margin-top:28px">${wl}</div>`;
+h+=`<div class="sn">${wn}</div>`;
+h+=`<div class="pb"><div class="pf" style="width:${wp}%;background:${wp===100?'var(--green)':'var(--accent)'}"></div></div>`;
+h+=wi.map(w=>ci(w,ck,false)).join("");
+} else if(S.wo==="rest"){
+h+=`<div class="sl" style="margin-top:28px">REST / MOBILITY DAY</div>`;
+h+=`<div class="ic"><div class="it2">🚴 30 min Zone 2 Bike</div><div class="id2">Warm-up + blood flow. Then full mobility routine (see Mobility tab).</div></div>`;
+} else {
+h+=`<div class="sl" style="margin-top:28px">OFF DAY</div>`;
+h+=`<div class="ic"><div class="it2">💤 Rest</div><div class="id2">Daily block + 30 min walk. That's it.</div></div>`;
 }
-function save(){
-  localStorage.setItem("rtc",JSON.stringify(state.checks));
-  localStorage.setItem("rtm",JSON.stringify(state.mobChecks));
-  localStorage.setItem("rtw",state.workout);
-}
-function toggle(id){const k=todayKey();if(!state.checks[k])state.checks[k]=[];const c=state.checks[k];state.checks[k]=c.includes(id)?c.filter(x=>x!==id):[...c,id];save();render()}
-function toggleMob(id){const k=todayKey();if(!state.mobChecks[k])state.mobChecks[k]=[];const c=state.mobChecks[k];state.mobChecks[k]=c.includes(id)?c.filter(x=>x!==id):[...c,id];save();render()}
-function setWorkout(w){state.workout=w;save();render()}
-function switchTab(t){state.tab=t;document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');render()}
-function resetToday(){const k=todayKey();delete state.checks[k];delete state.mobChecks[k];save();render()}
+h+=`<div style="margin-top:24px"><div class="ic"><div class="id2">🚶 <strong>Walking:</strong> 30 min every day. Include backward walking. Baseline movement + leanness tool.</div></div></div>`;
+h+=`<div class="rr"><button class="bg2" onclick="rt()">Reset Today</button></div>`;
+a.innerHTML=h;
+} else if(S.tab==="mobility"){
+let h=`<div class="accent-line"></div>`;
+h+=`<div class="sl">Mobility Routine</div>`;
+h+=`<div class="sn">Self-directed, 2-3× per week on rest/mobility days. Warm-up via 30 min bike.</div>`;
+h+=`<div class="sl" style="margin-top:20px">Roll / Massage Gun</div>`;
+h+=MR.map(m=>mi2(m,mk)).join("");
+h+=`<div class="sl" style="margin-top:20px">Stretch</div>`;
+h+=MS.map(m=>mi2(m,mk)).join("");
+h+=`<div class="sl" style="margin-top:20px">Optional</div>`;
+h+=MO.map(m=>mi2(m,mk)).join("");
+h+=`<div class="sl" style="margin-top:28px">Therapist Nerve Flossing</div>`;
+h+=`<div class="sn">On rest/mobility days. 2-3 sets of 10 smooth oscillations. No sustained holds.</div>`;
+h+=`<div class="tw"><table><thead><tr><th>Exercise</th><th>Notes</th><th>Video</th></tr></thead><tbody>`;
+h+=TH.map(t=>`<tr><td style="font-weight:500;color:var(--white)">${t.n}</td><td style="font-size:13px;color:var(--dim)">${t.no}</td><td><a href="${t.l}" target="_blank">▶ Watch</a></td></tr>`).join("");
+h+=`</tbody></table></div>`;
+h+=`<div class="sn">Popliteus release + chin tucks are in the daily block. Pectineus + quadratus femoris dropped — covered by hip mobility + glute SMR.</div>`;
+h+=`<div class="rr"><button class="bg2" onclick="rt()">Reset Checks</button></div>`;
+a.innerHTML=h;
+} else {
+a.innerHTML=`<div class="accent-line"></div>
+<div class="sl">Phase Gates</div>
+<div class="gate cleared"><div class="gh"><span class="gn">Gate 1 — Phase 3</span><span class="gt2">✓ CLEARED</span></div><div class="gb"><div class="gtest"><span>Test</span> 25 continuous pain-free double-leg heel raises.</div><div class="gl">Seated barbell calf raises added.</div></div></div>
+<div class="gate cleared"><div class="gh"><span class="gn">Gate 2 — Phase 4</span><span class="gt2">✓ CLEARED WK 8</span></div><div class="gb"><div class="gtest"><span>Test</span> 3 × 15 single-leg raises pain-free. Symmetrical dorsiflexion ROM.</div><div class="gl">Eccentric calf loading now active in daily block.</div><div class="gl">Sprint return protocol available — start 50-60% run-throughs when ready.</div></div></div>
+<div class="gate"><div class="gh"><span class="gn">Gate 3 — Phase 5</span><span class="gt2">NEXT TARGET</span></div><div class="gb"><div class="gtest"><span>Test</span> 25+ single-leg raises matching other side. Hop LSI ≥90%. ≥90% plantarflexion LSI.</div><div class="gl">Plyometrics: double-leg → single-leg → bounding. CMJs return.</div><div class="gl">Sprint: 50% × 60m → 80% × 50m → 100% × 40m. Each pain-free.</div><div class="gl">Calf raise target: ≥2× bodyweight single-leg.</div></div></div>
+<div class="gate"><div class="gh"><span class="gn">Gate 4 — Full Return</span><span class="gt2">WK 20-24</span></div><div class="gb"><div class="gtest"><span>Test</span> Hop LSI ≥95%. Pain-free max sprint. One week no symptoms.</div><div class="gl">All restrictions lifted. Contrast training + block starts resume.</div><div class="gl">1 week full training per 2 weeks missed.</div></div></div>
 
-function ci(item,checks,showLink){
-  const done=checks.includes(item.id);
-  const lnk=showLink&&item.link?` <a href="${item.link}" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;color:var(--accent)">▶ video</a>`:'';
-  return `<div class="check-item ${done?'done':''}" onclick="toggle('${item.id}')"><div class="check-box">${done?'✓':''}</div><div style="flex:1"><div class="check-name">${item.name}${lnk}</div><div class="check-rx">${item.rx}</div></div>${item.tag?`<span class="check-tag">${item.tag}</span>`:''}</div>`;
-}
-function mi(item,checks){
-  const done=checks.includes(item.id);
-  const w=item.warn?` <span class="mob-warn">${item.warn}</span>`:'';
-  return `<div class="mob-check ${done?'done':''}" onclick="toggleMob('${item.id}')"><div class="mob-box">${done?'✓':''}</div><div class="mob-text">${item.text}${w}</div></div>`;
-}
+<div class="sl" style="margin-top:28px">Timeline</div>
+<div class="tl">
+<div class="ti2 cleared"><div class="tw3">WK 5-6 · CLEARED</div><div class="tw4">Gate 1 — Phase 3</div><div class="td3">Seated calf raises began.</div></div>
+<div class="ti2 cleared"><div class="tw3">WK 8 · CLEARED</div><div class="tw4">Gate 2 — Phase 4</div><div class="td3">Eccentric loading active. Sprint return available.</div></div>
+<div class="ti2 current"><div class="tw3">WK 16-18 · TARGET</div><div class="tw4">Gate 3 — Phase 5</div><div class="td3">Plyometrics + sprint progression when cleared.</div></div>
+<div class="ti2"><div class="tw3">WK 20-24 · SEP-OCT</div><div class="tw4">Full Return</div><div class="td3">Max velocity. Block starts last. Arrive Hua Hin rebuilt.</div></div>
+</div>
 
-function render(){
-  const k=todayKey(),dow=new Date().getDay(),checks=state.checks[k]||[],mobChecks=state.mobChecks[k]||[];
-  document.getElementById("nav-sub").textContent=`${DAYS[dow]} · ${k}`;
-  const app=document.getElementById("app");
-
-  if(state.tab==="today"){
-    const isPU=state.workout==="pullups";
-    const df=DAILY.filter(d=>!(isPU&&d.skipOn==="pullups"));
-    const dd=df.filter(d=>checks.includes(d.id)).length;
-    const dp=Math.round((dd/df.length)*100);
-    let wi=[],wl="",wc=0,wd=0;
-    if(state.workout==="weights"){wi=WEIGHTS;wl="WEIGHTS"}
-    else if(state.workout==="pullups"){wi=PULLUPS;wl="PULL-UPS + SLAMS + POOL"}
-    if(wi.length){wc=wi.length;wd=wi.filter(w=>checks.includes(w.id)).length}
-    const wp=wc?Math.round((wd/wc)*100):0;
-
-    let h=`<div class="switcher">${["weights","pullups","rest","off"].map(w=>{
-      const l={weights:"Weights",pullups:"Pull-ups + Pool",rest:"Rest / Mobility",off:"Off"};
-      const i={weights:"🏋️",pullups:"🏊",rest:"🧘",off:"💤"};
-      return `<button class="sw-btn ${state.workout===w?'active':''}" onclick="setWorkout('${w}')"><div class="sw-label">${w==="off"?"off":"workout"}</div><div class="sw-val">${i[w]} ${l[w]}</div></button>`;
-    }).join("")}</div>`;
-
-    h+=`<div class="prog-bar"><div class="prog-fill" style="width:${dp}%;background:${dp===100?'var(--green)':'var(--accent)'}"></div></div>`;
-    h+=`<div class="section-label">Daily Block</div>`;
-    if(isPU) h+=`<div class="section-note">Dead hangs skipped — pause 3-5s at full hang on each pull-up rep instead.</div>`;
-    h+=df.map(d=>ci(d,checks,true)).join("");
-
-    if(state.workout==="weights"){
-      h+=`<div class="section-label" style="margin-top:24px">${wl}</div>`;
-      h+=`<div class="section-note">Straight sets. Full rest 90-120s. Top of rep range for 2 consecutive sessions → add 5 lbs.</div>`;
-      h+=`<div class="prog-bar"><div class="prog-fill" style="width:${wp}%;background:${wp===100?'var(--green)':'var(--accent)'}"></div></div>`;
-      h+=wi.map(w=>ci(w,checks,false)).join("");
-    } else if(state.workout==="pullups"){
-      h+=`<div class="section-label" style="margin-top:24px">${wl}</div>`;
-      h+=`<div class="section-note">Full rest between all sets. Consistent reps across all 4 sets → add weight.</div>`;
-      h+=`<div class="prog-bar"><div class="prog-fill" style="width:${wp}%;background:${wp===100?'var(--green)':'var(--accent)'}"></div></div>`;
-      h+=wi.map(w=>ci(w,checks,false)).join("");
-    } else if(state.workout==="rest"){
-      h+=`<div class="section-label" style="margin-top:24px">REST / MOBILITY DAY</div>`;
-      h+=`<div class="info-card"><div class="info-title">🚴 30 min Zone 2 Bike</div><div class="info-detail">Warm-up + blood flow. Then full mobility routine (see Mobility tab).</div></div>`;
-    } else {
-      h+=`<div class="section-label" style="margin-top:24px">OFF DAY</div>`;
-      h+=`<div class="info-card"><div class="info-title">💤 Rest</div><div class="info-detail">Daily block + 30 min walk. That's it.</div></div>`;
-    }
-    h+=`<div style="margin-top:20px"><div class="info-card"><div class="info-detail">🚶 <strong>Walking:</strong> 30 min every day. Include some backward walking. Baseline movement + leanness tool.</div></div></div>`;
-    h+=`<div class="reset-row"><button class="btn-ghost" onclick="resetToday()">Reset Today</button></div>`;
-    app.innerHTML=h;
-
-  } else if(state.tab==="mobility"){
-    let h=`<div class="section-label">Mobility Routine</div>`;
-    h+=`<div class="section-note">Self-directed, 2-3× per week on rest/mobility days. Warm-up via 30 min bike (already done).</div>`;
-    h+=`<div class="section-label" style="margin-top:16px">Roll / Massage Gun</div>`;
-    h+=MOB_ROLL.map(m=>mi(m,mobChecks)).join("");
-    h+=`<div class="section-label" style="margin-top:16px">Stretch</div>`;
-    h+=MOB_STRETCH.map(m=>mi(m,mobChecks)).join("");
-    h+=`<div class="section-label" style="margin-top:16px">Optional</div>`;
-    h+=MOB_OPT.map(m=>mi(m,mobChecks)).join("");
-
-    h+=`<div class="section-label" style="margin-top:24px">Therapist Nerve Flossing</div>`;
-    h+=`<div class="section-note">On rest/mobility days. 2-3 sets of 10 smooth oscillations. No sustained holds at end range.</div>`;
-    h+=`<div class="tbl-wrap"><table><thead><tr><th>Exercise</th><th>Notes</th><th>Video</th></tr></thead><tbody>`;
-    h+=THERAPIST.map(t=>`<tr><td style="font-weight:500;color:var(--white)">${t.name}</td><td style="font-size:12px;color:var(--dim)">${t.note}</td><td><a href="${t.link}" target="_blank">▶ Watch</a></td></tr>`).join("");
-    h+=`</tbody></table></div>`;
-    h+=`<div class="section-note">Popliteus release is in the daily block (daily). Pectineus and quadratus femoris dropped — low yield, covered by general hip mobility and glute SMR.</div>`;
-    h+=`<div class="reset-row"><button class="btn-ghost" onclick="resetToday()">Reset Mobility Checks</button></div>`;
-    app.innerHTML=h;
-
-  } else if(state.tab==="reference"){
-    app.innerHTML=`
-      <div class="section-label">Phase Gates — Do Not Skip</div>
-      <div class="gate"><div class="gate-hdr"><span class="gate-name">Gate 1 — Phase 3</span><span class="gate-target">WK 5-6</span></div><div class="gate-body"><div class="gate-test"><span>Test</span> 25 continuous pain-free double-leg heel raises, full ROM. Test every 3-4 days.</div><div class="gate-li">Add seated barbell calf raises (barbell across knees). Start light. 2-3s up/down.</div></div></div>
-      <div class="gate"><div class="gate-hdr"><span class="gate-name">Gate 2 — Phase 4</span><span class="gate-target">WK 10-12</span></div><div class="gate-body"><div class="gate-test"><span>Test</span> 3 × 15 single-leg raises pain-free. Symmetrical dorsiflexion ROM.</div><div class="gate-li">Back squats return (~185). Deadlifts. Standing OHP.</div><div class="gate-li">Eccentric calf loading: heel lowering off step, 3 × 15.</div><div class="gate-li">Program restructures — real strength work begins.</div></div></div>
-      <div class="gate"><div class="gate-hdr"><span class="gate-name">Gate 3 — Phase 5</span><span class="gate-target">WK 16-18</span></div><div class="gate-body"><div class="gate-test"><span>Test</span> 25+ single-leg raises matching other side. Hop LSI ≥90%. ≥90% plantarflexion LSI.</div><div class="gate-li">Plyometrics: double-leg → single-leg → bounding. CMJs return.</div><div class="gate-li">Sprint: 50% × 60m → 80% × 50m → 100% × 40m. Each pain-free.</div><div class="gate-li">Calf raise target: ≥2× bodyweight single-leg.</div></div></div>
-      <div class="gate"><div class="gate-hdr"><span class="gate-name">Gate 4 — Full Return</span><span class="gate-target">WK 20-24</span></div><div class="gate-body"><div class="gate-test"><span>Test</span> Hop LSI ≥95%. Pain-free max sprint. One full week no symptoms.</div><div class="gate-li">All restrictions lifted. Contrast training + block starts resume.</div><div class="gate-li">1 week full training per 2 weeks missed.</div></div></div>
-
-      <div class="section-label" style="margin-top:24px">Return-to-Sprint Timeline</div>
-      <div class="tl">
-        <div class="tl-item"><div class="tl-when">WK 5-6 · MID-MAY</div><div class="tl-what">Gate 1 — Enter Phase 3</div><div class="tl-detail">Clear 25 raises. Seated calf raises begin.</div></div>
-        <div class="tl-item"><div class="tl-when">WK 6-10 · MAY-JUN</div><div class="tl-what">Phase 3 — Concentric Loading</div><div class="tl-detail">Progressive calf raises. Build to 3 × 15 single-leg.</div></div>
-        <div class="tl-item"><div class="tl-when">WK 10-16 · JUN-JUL</div><div class="tl-what">Phase 4 — Eccentric Loading</div><div class="tl-detail">Eccentrics. Submaximal run-throughs ~50-60%.</div></div>
-        <div class="tl-item"><div class="tl-when">WK 16-20 · AUG-SEP</div><div class="tl-what">Phase 5 — Sprint Progression</div><div class="tl-detail">50% → 80% → 100%. Plyometrics return.</div></div>
-        <div class="tl-item"><div class="tl-when">WK 20-24 · SEP-OCT</div><div class="tl-what">Full Return</div><div class="tl-detail">Max velocity. Block starts last. Arrive Hua Hin rebuilt.</div></div>
-      </div>
-
-      <div class="section-label" style="margin-top:24px">How the Tear Heals</div>
-      <div class="bio"><div class="bio-title">Phase 1 — Destruction · Hours 0-48</div><p>Torn fibers retract and die. Hematoma forms as scaffold. Neutrophils clean debris (hrs 1-24), macrophages (hrs 24-72) secrete growth factors (IGF-1, HGF, FGF) that activate satellite cells.</p></div>
-      <div class="bio"><div class="bio-title">Phase 2 — Repair · Days 3-21</div><p>Two processes race. Satellite cells fuse into new myotubes bridging the gap. Fibroblasts lay down Type III collagen — thin, disorganized, weak. In Grade II, gap too large to fully bridge; scar fills the rest. BPC-157 supports satellite cell side via angiogenesis. TB-500 promotes cell migration.</p></div>
-      <div class="bio"><div class="bio-title">Phase 3 — Remodeling · Weeks 3-6+ Months</div><p>Type III collagen replaced by Type I — thicker, stronger, organized along lines of mechanical stress. Isometrics give directional signal. Concentric loading adds moderate stress. Eccentric loading is highest demand — most powerful remodeling stimulus if mature enough, re-tear mechanism if too early.</p></div>
-      <div class="bio warn"><div class="bio-title">Why Re-Tears Happen</div><p>Scar is stiffer/less elastic than original muscle. Junction between scar and healthy tissue is the weakest link. Re-tears at scar margins, not middle. Bulletproofing = surrounding tissue so strong the junction never sees forces near failure threshold.</p></div>
-      <div class="bio warn"><div class="bio-title">Why Peptides Create False Confidence</div><p>BPC-157/TB-500 accelerate early repair. Pain drops, swelling resolves. But collagen maturation runs on its own clock. Tissue feels healed while architecture is immature. Gates test structure, not perception.</p></div>
-      <div class="footer-line">PROGRAM BUILT MAY 2026 · UPDATE AT GATE 2</div>`;
-  }
-}
-load();render();
+<div class="sl" style="margin-top:28px">How the Tear Heals</div>
+<div class="bio"><div class="bio-t">Phase 1 — Destruction · Hours 0-48</div><p>Torn fibers retract. Hematoma forms scaffold. Neutrophils (hrs 1-24), macrophages (hrs 24-72) secrete growth factors activating satellite cells.</p></div>
+<div class="bio"><div class="bio-t">Phase 2 — Repair · Days 3-21</div><p>Satellite cells fuse into myotubes bridging the gap. Fibroblasts lay Type III collagen — weak, disorganized. Grade II gap too large to fully bridge; scar fills the rest. BPC-157 supports via angiogenesis. TB-500 promotes cell migration.</p></div>
+<div class="bio"><div class="bio-t">Phase 3 — Remodeling · Weeks 3-6+ Months</div><p>Type III → Type I collagen. Thicker, stronger, organized along stress lines. Isometrics = directional signal. Concentrics = moderate stress. Eccentrics = highest demand — remodeling stimulus if mature, re-tear if too early.</p></div>
+<div class="bio warn"><div class="bio-t">Why Re-Tears Happen</div><p>Scar is stiffer than original muscle. Junction between scar and healthy tissue = weakest link. Re-tears at margins, not middle. Bulletproofing = surrounding tissue strong enough the junction never sees failure-threshold forces.</p></div>
+<div class="bio warn"><div class="bio-t">Peptide False Confidence</div><p>BPC-157/TB-500 accelerate early repair. Pain drops. But collagen maturation runs on its own clock. Tissue feels healed while architecture is immature. Gates test structure, not perception.</p></div>
+<div class="fl">PHASE 4 ACTIVE · UPDATE AT GATE 3</div>`;
+}}
+ld();rn();
 </script>
 </body>
 </html>
