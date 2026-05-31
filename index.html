@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return to Training</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000000'/%3E%3Cpath d='M8 20 L16 12 L24 20' fill='none' stroke='%23c9a96e' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000000'/%3E%3Cpath d='M8 20 L16 12 L24 20' fill='none' stroke='%23ff6a1f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
     <style>
     :root {
         --bg: #0c0c0c;
@@ -15,9 +18,9 @@
         --text: #ece8e2;
         --dim: #9a9690;
         --muted: #65615c;
-        --accent: #c9a96e;
-        --accent-dim: #8a7548;
-        --accent-glow: rgba(201, 169, 110, 0.1);
+        --accent: #ff6a1f;
+        --accent-dim: #c25a1c;
+        --accent-glow: rgba(255, 106, 31, 0.12);
         --white: #f7f4ef;
         --red: #c45c4a;
         --green: #6aac6a;
@@ -69,7 +72,6 @@
     .ns {
         font-size: 13px;
         color: var(--dim);
-        font-family: 'JetBrains Mono', monospace;
         margin-top: 5px;
         letter-spacing: 0.5px
     }
@@ -90,7 +92,6 @@
         cursor: pointer;
         text-transform: uppercase;
         letter-spacing: 1.5px;
-        font-family: 'JetBrains Mono', monospace;
         transition: all 0.25s
     }
 
@@ -135,7 +136,6 @@
     }
 
     .day .dl {
-        font-family: 'JetBrains Mono', monospace;
         font-size: 12px;
         font-weight: 600;
         letter-spacing: 1px;
@@ -206,8 +206,8 @@
     }
 
     .sl {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 13px;
+        font-size: 12px;
+        font-weight: 600;
         letter-spacing: 2.5px;
         color: var(--accent);
         text-transform: uppercase;
@@ -308,13 +308,12 @@
     .cr {
         font-size: 14px;
         color: var(--dim);
-        font-family: 'JetBrains Mono', monospace;
         margin-top: 3px
     }
 
     .ct {
-        font-family: 'JetBrains Mono', monospace;
         font-size: 11px;
+        font-weight: 600;
         color: var(--accent-dim);
         letter-spacing: 1px;
         padding: 4px 9px;
@@ -339,7 +338,6 @@
 
     thead th {
         background: var(--surface2);
-        font-family: 'JetBrains Mono', monospace;
         font-size: 11px;
         letter-spacing: 1.5px;
         text-transform: uppercase;
@@ -461,10 +459,10 @@
     }
 
     .g2 {
-        font-family: 'JetBrains Mono', monospace;
         font-size: 12px;
+        font-weight: 600;
         color: var(--accent);
-        letter-spacing: 1px
+        letter-spacing: 1.5px
     }
 
     .gate.cleared .g2 {
@@ -484,7 +482,6 @@
     }
 
     .gt2 span {
-        font-family: 'JetBrains Mono', monospace;
         font-size: 12px;
         color: var(--accent-dim);
         margin-right: 6px;
@@ -501,11 +498,10 @@
     }
 
     .gl::before {
-        content: '>';
+        content: '→';
         position: absolute;
         left: 0;
-        color: var(--accent-dim);
-        font-family: 'JetBrains Mono', monospace
+        color: var(--accent-dim)
     }
 
     .tl {
@@ -550,14 +546,15 @@
 
     .ti.current::before {
         background: var(--accent);
-        box-shadow: 0 0 10px rgba(201, 169, 110, 0.5)
+        box-shadow: 0 0 12px rgba(255, 106, 31, 0.6)
     }
 
     .t3 {
-        font-family: 'JetBrains Mono', monospace;
         font-size: 12px;
+        font-weight: 600;
         color: var(--accent-dim);
-        letter-spacing: 1px
+        letter-spacing: 1.5px;
+        text-transform: uppercase
     }
 
     .t4 {
@@ -637,7 +634,6 @@
         color: var(--muted);
         font-size: 13px;
         cursor: pointer;
-        font-family: 'JetBrains Mono', monospace;
         transition: all 0.2s
     }
 
@@ -651,19 +647,48 @@
         margin-top: 32px;
         padding-top: 20px;
         border-top: 1px solid var(--border);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
         color: var(--muted);
         letter-spacing: 1px
     }
 
     @media (max-width: 560px) {
-        .co {
-            padding: 20px 16px 100px
+        .nav {
+            padding: 16px 16px
+        }
+
+        .ni {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px
         }
 
         .nt {
-            font-size: 22px
+            font-size: 25px;
+            line-height: 1.1
+        }
+
+        .ns {
+            margin-top: 4px
+        }
+
+        .tabs {
+            width: 100%;
+            gap: 6px
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 11px 6px;
+            font-size: 12px;
+            letter-spacing: 1px
+        }
+
+        .co {
+            padding: 20px 16px 100px
         }
 
         .week {
