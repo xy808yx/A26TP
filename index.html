@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return to Training</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000000'/%3E%3Cline x1='9' y1='9' x2='23' y2='23' stroke='%23c9a96e' stroke-width='3.5' stroke-linecap='round'/%3E%3Cline x1='23' y1='9' x2='9' y2='23' stroke='%23c9a96e' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
     <style>
     :root {
         --bg: #0c0c0c;
-        --surface: #151515;
-        --surface2: #1a1a1a;
-        --border: #262626;
-        --border-h: #333;
-        --text: #e8e4df;
-        --dim: #908c86;
-        --muted: #5c5955;
+        --surface: #161616;
+        --surface2: #1d1d1d;
+        --border: #2a2a2a;
+        --border-h: #3a3a3a;
+        --text: #ece8e2;
+        --dim: #9a9690;
+        --muted: #65615c;
         --accent: #c9a96e;
         --accent-dim: #8a7548;
-        --accent-glow: rgba(201, 169, 110, 0.08);
-        --white: #f5f2ed;
+        --accent-glow: rgba(201, 169, 110, 0.1);
+        --white: #f7f4ef;
         --red: #c45c4a;
-        --green: #5a9a5a;
-        --green-bg: rgba(90, 154, 90, 0.07);
-        --green-border: rgba(90, 154, 90, 0.25)
+        --green: #6aac6a;
+        --green-bg: rgba(106, 172, 106, 0.09);
+        --green-border: rgba(106, 172, 106, 0.3);
+        --cardio: #7a9cc4;
+        --cardio-dim: #4a6488
     }
 
     * {
@@ -35,21 +37,22 @@
         background: var(--bg);
         color: var(--text);
         font-family: 'Outfit', sans-serif;
-        -webkit-font-smoothing: antialiased
+        -webkit-font-smoothing: antialiased;
+        font-size: 16px
     }
 
     .nav {
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(12, 12, 12, 0.95);
+        background: rgba(12, 12, 12, 0.96);
         backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border);
-        padding: 14px 24px
+        padding: 16px 24px
     }
 
     .ni {
-        max-width: 680px;
+        max-width: 720px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -58,29 +61,31 @@
 
     .nt {
         font-family: 'DM Serif Display', serif;
-        font-size: 22px;
-        color: var(--white)
+        font-size: 26px;
+        color: var(--white);
+        line-height: 1
     }
 
     .ns {
-        font-size: 12px;
+        font-size: 13px;
         color: var(--dim);
         font-family: 'JetBrains Mono', monospace;
-        margin-top: 3px
+        margin-top: 5px;
+        letter-spacing: 0.5px
     }
 
     .tabs {
         display: flex;
-        gap: 4px
+        gap: 5px
     }
 
     .tab {
         background: transparent;
         border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 8px 16px;
+        border-radius: 9px;
+        padding: 10px 18px;
         color: var(--dim);
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
         cursor: pointer;
         text-transform: uppercase;
@@ -101,94 +106,141 @@
     }
 
     .co {
-        max-width: 680px;
+        max-width: 720px;
         margin: 0 auto;
-        padding: 20px 24px 120px
+        padding: 24px 24px 120px
+    }/* WEEK ROTATION STRIP */
+    .week {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        margin-bottom: 28px
+    }
+
+    .day {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 4px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.2s;
+        position: relative;
+        overflow: hidden
+    }
+
+    .day:hover {
+        border-color: var(--border-h);
+        background: var(--surface2)
+    }
+
+    .day .dl {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 8px
+    }
+
+    .day .dw {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--dim);
+        line-height: 1.2
+    }
+
+    .day.sel {
+        background: var(--surface2);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent)
+    }
+
+    .day.sel .dl {
+        color: var(--accent)
+    }
+
+    .day.sel .dw {
+        color: var(--white)
+    }
+
+    .day.pull .dw {
+        color: var(--accent)
+    }
+
+    .day.push .dw {
+        color: var(--accent)
+    }
+
+    .day.cardio .dw {
+        color: var(--cardio)
+    }
+
+    .day.off .dw {
+        color: var(--muted)
+    }
+
+    .day .today-dot {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent)
+    }
+
+    .day.sel.pull, .day.sel.push {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent)
+    }
+
+    .day.sel.cardio {
+        border-color: var(--cardio);
+        box-shadow: 0 0 0 1px var(--cardio)
+    }
+
+    .day.sel.cardio .dl {
+        color: var(--cardio)
     }
 
     .sl {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
+        font-size: 13px;
         letter-spacing: 2.5px;
         color: var(--accent);
         text-transform: uppercase;
-        margin-bottom: 12px;
-        margin-top: 24px
+        margin-bottom: 14px;
+        margin-top: 32px
     }
 
-    .sl:first-child {
+    .sl.first {
         margin-top: 0
     }
 
+    .sl.muted {
+        color: var(--muted)
+    }
+
     .sn {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--dim);
         font-style: italic;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
         line-height: 1.6;
-        padding: 10px 16px;
-        border-left: 2px solid var(--accent-dim);
+        padding: 12px 18px;
+        border-left: 3px solid var(--accent-dim);
         background: var(--accent-glow);
-        border-radius: 0 8px 8px 0
-    }
-
-    .sw-wrap {
-        display: flex;
-        gap: 1px;
-        background: var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 20px
-    }
-
-    .sw {
-        flex: 1;
-        background: var(--surface);
-        border: none;
-        padding: 16px 8px;
-        cursor: pointer;
-        text-align: center;
-        transition: all 0.25s
-    }
-
-    .sw:hover {
-        background: var(--surface2)
-    }
-
-    .sw.active {
-        background: var(--surface2);
-        box-shadow: inset 0 -2px 0 var(--accent)
-    }
-
-    .sw .s2 {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 10px;
-        letter-spacing: 1.5px;
-        color: var(--muted);
-        text-transform: uppercase;
-        margin-bottom: 4px
-    }
-
-    .sw.active .s2 {
-        color: var(--accent)
-    }
-
-    .sw .sv {
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--dim)
-    }
-
-    .sw.active .sv {
-        color: var(--white)
+        border-radius: 0 10px 10px 0
     }
 
     .pb {
-        height: 5px;
+        height: 6px;
         background: var(--border);
         border-radius: 3px;
         overflow: hidden;
-        margin-bottom: 18px
+        margin-bottom: 20px
     }
 
     .pf {
@@ -200,14 +252,14 @@
     .ci {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 16px;
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 14px 18px;
-        margin-bottom: 6px;
+        border-radius: 14px;
+        padding: 16px 20px;
+        margin-bottom: 8px;
         cursor: pointer;
-        transition: all 0.25s;
+        transition: all 0.22s;
         user-select: none
     }
 
@@ -222,27 +274,27 @@
     }
 
     .cb {
-        width: 28px;
-        height: 28px;
-        border-radius: 7px;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
         border: 2px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--green);
-        font-size: 15px;
+        font-size: 17px;
         font-weight: 700;
         flex-shrink: 0;
-        transition: all 0.25s
+        transition: all 0.22s
     }
 
     .ci.done .cb {
         border-color: var(--green);
-        background: rgba(90, 154, 90, 0.15)
+        background: rgba(106, 172, 106, 0.16)
     }
 
     .cn {
-        font-size: 15px;
+        font-size: 17px;
         font-weight: 500;
         color: var(--white);
         transition: color 0.2s;
@@ -254,20 +306,20 @@
     }
 
     .cr {
-        font-size: 13px;
+        font-size: 14px;
         color: var(--dim);
         font-family: 'JetBrains Mono', monospace;
-        margin-top: 2px
+        margin-top: 3px
     }
 
     .ct {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 10px;
+        font-size: 11px;
         color: var(--accent-dim);
         letter-spacing: 1px;
-        padding: 3px 8px;
+        padding: 4px 9px;
         background: var(--surface2);
-        border-radius: 4px;
+        border-radius: 5px;
         margin-left: auto;
         flex-shrink: 0;
         border: 1px solid var(--border)
@@ -275,9 +327,9 @@
 
     .tw {
         border: 1px solid var(--border);
-        border-radius: 10px;
+        border-radius: 12px;
         overflow: hidden;
-        margin-bottom: 14px
+        margin-bottom: 16px
     }
 
     table {
@@ -288,19 +340,19 @@
     thead th {
         background: var(--surface2);
         font-family: 'JetBrains Mono', monospace;
-        font-size: 10px;
+        font-size: 11px;
         letter-spacing: 1.5px;
         text-transform: uppercase;
         color: var(--muted);
-        padding: 12px 14px;
+        padding: 14px 16px;
         text-align: left;
         font-weight: 500;
         border-bottom: 1px solid var(--border)
     }
 
     tbody td {
-        padding: 12px 14px;
-        font-size: 14px;
+        padding: 14px 16px;
+        font-size: 15px;
         border-bottom: 1px solid var(--border);
         vertical-align: top;
         color: var(--text)
@@ -317,7 +369,7 @@
     td a {
         color: var(--accent);
         text-decoration: none;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 500
     }
 
@@ -328,22 +380,22 @@
     .mc {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 8px 0;
+        gap: 14px;
+        padding: 10px 0;
         cursor: pointer;
         user-select: none
     }
 
     .mb {
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
         border: 2px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--green);
-        font-size: 11px;
+        font-size: 13px;
         font-weight: 700;
         flex-shrink: 0;
         transition: all 0.2s
@@ -351,11 +403,11 @@
 
     .mc.done .mb {
         border-color: var(--green);
-        background: rgba(90, 154, 90, 0.15)
+        background: rgba(106, 172, 106, 0.16)
     }
 
     .m2 {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--dim);
         transition: color 0.2s;
         line-height: 1.4
@@ -368,28 +420,28 @@
     .mw {
         color: var(--red);
         font-weight: 600;
-        font-size: 11px;
+        font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 0.5px
     }
 
     .gate {
         border: 1px solid var(--border);
-        border-radius: 10px;
+        border-radius: 12px;
         overflow: hidden;
-        margin-bottom: 14px
+        margin-bottom: 16px
     }
 
     .gate.cleared {
         border-color: var(--green-border);
-        opacity: 0.6
+        opacity: 0.65
     }
 
     .gh {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 18px;
+        padding: 18px 20px;
         background: var(--surface);
         border-bottom: 1px solid var(--border)
     }
@@ -400,7 +452,7 @@
 
     .gn {
         font-weight: 700;
-        font-size: 15px;
+        font-size: 16px;
         color: var(--white)
     }
 
@@ -410,7 +462,7 @@
 
     .g2 {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
+        font-size: 12px;
         color: var(--accent);
         letter-spacing: 1px
     }
@@ -420,20 +472,20 @@
     }
 
     .gb {
-        padding: 14px 18px
+        padding: 16px 20px
     }
 
     .gt2 {
-        font-size: 15px;
+        font-size: 16px;
         color: var(--text);
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         font-weight: 500;
         line-height: 1.5
     }
 
     .gt2 span {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
+        font-size: 12px;
         color: var(--accent-dim);
         margin-right: 6px;
         text-transform: uppercase;
@@ -441,38 +493,39 @@
     }
 
     .gl {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--dim);
-        padding: 3px 0 3px 16px;
+        padding: 4px 0 4px 18px;
         position: relative;
         line-height: 1.5
     }
 
     .gl::before {
-        content: '→';
+        content: '>';
         position: absolute;
         left: 0;
-        color: var(--accent-dim)
+        color: var(--accent-dim);
+        font-family: 'JetBrains Mono', monospace
     }
 
     .tl {
         position: relative;
-        padding-left: 28px
+        padding-left: 30px
     }
 
     .tl::before {
         content: '';
         position: absolute;
-        left: 7px;
-        top: 7px;
-        bottom: 7px;
+        left: 8px;
+        top: 8px;
+        bottom: 8px;
         width: 1px;
         background: var(--border)
     }
 
     .ti {
         position: relative;
-        padding-bottom: 22px
+        padding-bottom: 24px
     }
 
     .ti:last-child {
@@ -482,10 +535,10 @@
     .ti::before {
         content: '';
         position: absolute;
-        left: -24px;
+        left: -25px;
         top: 6px;
-        width: 8px;
-        height: 8px;
+        width: 9px;
+        height: 9px;
         border-radius: 50%;
         background: var(--accent-dim);
         border: 2px solid var(--bg)
@@ -497,33 +550,33 @@
 
     .ti.current::before {
         background: var(--accent);
-        box-shadow: 0 0 8px rgba(201, 169, 110, 0.4)
+        box-shadow: 0 0 10px rgba(201, 169, 110, 0.5)
     }
 
     .t3 {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
+        font-size: 12px;
         color: var(--accent-dim);
         letter-spacing: 1px
     }
 
     .t4 {
-        font-size: 15px;
+        font-size: 16px;
         color: var(--text);
         font-weight: 600;
-        margin: 2px 0
+        margin: 3px 0
     }
 
     .t5 {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--dim)
     }
 
     .bio {
-        margin-bottom: 18px;
-        padding: 12px 16px;
-        border-left: 2px solid var(--border);
-        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+        padding: 14px 18px;
+        border-left: 3px solid var(--border);
+        border-radius: 0 10px 10px 0;
         background: var(--surface)
     }
 
@@ -533,11 +586,11 @@
 
     .bt {
         font-weight: 700;
-        font-size: 13px;
+        font-size: 14px;
         color: var(--accent);
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin-bottom: 6px
+        margin-bottom: 8px
     }
 
     .bio.warn .bt {
@@ -545,7 +598,7 @@
     }
 
     .bio p {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--dim);
         line-height: 1.7
     }
@@ -553,36 +606,36 @@
     .ic {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 16px 20px;
-        margin-bottom: 10px
+        border-radius: 14px;
+        padding: 18px 22px;
+        margin-bottom: 12px
     }
 
     .i2 {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
         color: var(--white);
-        margin-bottom: 4px
+        margin-bottom: 5px
     }
 
     .i3 {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--dim);
         line-height: 1.6
     }
 
     .rr {
         text-align: center;
-        margin-top: 20px
+        margin-top: 24px
     }
 
     .bg {
         background: transparent;
         border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 10px 20px;
+        border-radius: 9px;
+        padding: 12px 24px;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 13px;
         cursor: pointer;
         font-family: 'JetBrains Mono', monospace;
         transition: all 0.2s
@@ -595,20 +648,50 @@
 
     .fl {
         text-align: center;
-        margin-top: 28px;
-        padding-top: 18px;
+        margin-top: 32px;
+        padding-top: 20px;
         border-top: 1px solid var(--border);
         font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
+        font-size: 12px;
         color: var(--muted);
         letter-spacing: 1px
     }
 
-    .al {
-        height: 2px;
-        background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
-        margin-bottom: 20px;
-        border-radius: 1px
+    @media (max-width: 560px) {
+        .co {
+            padding: 20px 16px 100px
+        }
+
+        .nt {
+            font-size: 22px
+        }
+
+        .week {
+            gap: 4px
+        }
+
+        .day {
+            padding: 10px 2px;
+            border-radius: 9px
+        }
+
+        .day .dl {
+            font-size: 11px;
+            margin-bottom: 5px
+        }
+
+        .day .dw {
+            font-size: 11px
+        }
+
+        .cn {
+            font-size: 16px
+        }
+
+        .ci {
+            padding: 15px 16px;
+            gap: 13px
+        }
     }
     </style>
 </head>
@@ -731,6 +814,26 @@
         n: "Bulgarian Split Squats",
         r: "3 × 8-10/leg · BW → hold plates",
         t: "BSS"
+    },
+    ];
+    const CARDIO = [
+    {
+        id: "c1",
+        n: "Sprint Run-Throughs",
+        r: "3-5 × 50m @ 50-60% · walk-back recovery · one cardio day",
+        t: "SPRINT"
+    },
+    {
+        id: "c2",
+        n: "Cardio — Bike or Swim",
+        r: "30 min · zone 1-2 · no jogging yet",
+        t: "AEROBIC"
+    },
+    {
+        id: "c3",
+        n: "Full Mobility Routine",
+        r: "See Mobility tab",
+        t: "MOBILITY"
     },
     ];
     const MR = [
@@ -861,6 +964,31 @@
         l: "https://www.youtube.com/watch?v=KIYNdFvM4vc"
     },
     ];
+    // 7-day rotation: Mon=Pull, Tue=Push, Wed=Cardio, Thu=Pull, Fri=Push, Sat=Cardio, Sun=Off
+    const ROT = {
+        1: "pull",
+        2: "push",
+        3: "cardio",
+        4: "pull",
+        5: "push",
+        6: "cardio",
+        0: "off"
+    };
+    const DABBR = {
+        1: "Mon",
+        2: "Tue",
+        3: "Wed",
+        4: "Thu",
+        5: "Fri",
+        6: "Sat",
+        0: "Sun"
+    };
+    const WLABEL = {
+        pull: "Pull",
+        push: "Push",
+        cardio: "Cardio",
+        off: "Off"
+    };
     const DY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     function tk() {
         const d = new Date();
@@ -868,27 +996,21 @@
     }
     let S = {
         tab: "today",
-        wo: "pull",
+        sel: new Date().getDay(),
         ck: {},
         mk: {}
     };
     function ld() {
         try {
-            S.ck = JSON.parse(localStorage.getItem("rtc6") || "{}")
+            S.ck = JSON.parse(localStorage.getItem("rtc7") || "{}")
         } catch (e) {}
         try {
-            S.mk = JSON.parse(localStorage.getItem("rtm6") || "{}")
-        } catch (e) {}
-        try {
-            const w = localStorage.getItem("rtw6");
-            if (w)
-                S.wo = w
+            S.mk = JSON.parse(localStorage.getItem("rtm7") || "{}")
         } catch (e) {}
     }
     function sv() {
-        localStorage.setItem("rtc6", JSON.stringify(S.ck));
-        localStorage.setItem("rtm6", JSON.stringify(S.mk));
-        localStorage.setItem("rtw6", S.wo)
+        localStorage.setItem("rtc7", JSON.stringify(S.ck));
+        localStorage.setItem("rtm7", JSON.stringify(S.mk))
     }
     function tg(id) {
         const k = tk();
@@ -908,9 +1030,8 @@
         sv();
         rn()
     }
-    function sw(w) {
-        S.wo = w;
-        sv();
+    function selDay(d) {
+        S.sel = d;
         rn()
     }
     function st(t) {
@@ -928,7 +1049,7 @@
     }
     function ci(i, ck, sl) {
         const d = ck.includes(i.id);
-        const lk = sl && i.l ? ` <a href="${i.l}" target="_blank" onclick="event.stopPropagation()" style="font-size:12px;color:var(--accent);font-weight:500">▶ video</a>` : '';
+        const lk = sl && i.l ? ` <a href="${i.l}" target="_blank" onclick="event.stopPropagation()">▶ video</a>` : '';
         return `<div class="ci ${d ? 'done' : ''}" onclick="tg('${i.id}')"><div class="cb">${d ? '✓' : ''}</div><div style="flex:1"><div class="cn">${i.n}${lk}</div><div class="cr">${i.r}</div></div>${i.t ? `<span class="ct">${i.t}</span>` : ''}</div>`
     }
     function mi(i, ck) {
@@ -938,93 +1059,109 @@
     }
     function rn() {
         const k = tk(),
-            dow = new Date().getDay(),
+            todayDow = new Date().getDay(),
             ck = S.ck[k] || [],
             mk = S.mk[k] || [];
-        document.getElementById("ns").textContent = `${DY[dow]} · ${k} · Phase 4`;
+        document.getElementById("ns").textContent = `${DY[todayDow]} · ${k} · Phase 4`;
         const a = document.getElementById("app");
         if (S.tab === "today") {
-            const isTraining = S.wo === "pull" || S.wo === "push";
-            const isPull = S.wo === "pull";
-            const df = D.filter(d => !(isTraining && d.skip === "training"));
-            const dd = df.filter(d => ck.includes(d.id)).length;
-            const dp = Math.round((dd / df.length) * 100);
+            let h = "";
+            // WEEK ROTATION STRIP
+            h += `<div class="week">`;
+            [1, 2, 3, 4, 5, 6, 0].forEach(dow => {
+                const wo = ROT[dow];
+                const isToday = dow === todayDow;
+                const isSel = dow === S.sel;
+                h += `<div class="day ${wo} ${isSel ? 'sel' : ''}" onclick="selDay(${dow})">${isToday ? '<div class="today-dot"></div>' : ''}<div class="dl">${DABBR[dow]}</div><div class="dw">${WLABEL[wo]}</div></div>`;
+            });
+            h += `</div>`;
+
+            const wo = ROT[S.sel];
+            const isTraining = wo === "pull" || wo === "push";
+            const isPull = wo === "pull";
             let wi = [],
                 wl = "",
                 wn = "";
-            if (S.wo === "pull") {
+            if (wo === "pull") {
                 wi = PULL;
-                wl = "PULL + CALF RAISES";
+                wl = "Pull + Calf Raises";
                 wn = "Straight sets, full rest. Hang pause replaces dead hangs. Consistent reps across all 4 sets → add weight. Calf raises: when 3×15 is easy, hold a plate."
             }
-            else if (S.wo === "push") {
+            else if (wo === "push") {
                 wi = PUSH;
-                wl = "PUSH + BSS";
+                wl = "Push + BSS";
                 wn = "Straight sets, full rest 90-120s. Top of rep range for 2 consecutive sessions → add 5 lbs. BSS: bodyweight first, then hold plates."
             }
-            const wc = wi.length,
-                wd = wi.filter(w => ck.includes(w.id)).length;
-            const wp = wc ? Math.round((wd / wc) * 100) : 0;
-            let h = `<div class="al"></div>`;
-            h += `<div class="sw-wrap">${["pull", "push", "mobility", "off"].map(w => {const l = {pull: "Pull + Calf",push: "Push + BSS",mobility: "Mobility + Cardio",off: "Off"};const i = {pull: "💪",push: "🏋️",mobility: "🧘",off: "💤"};return `<button class="sw ${S.wo === w ? 'active' : ''}" onclick="sw('${w}')"><div class="s2">${w === "off" ? "off" : "workout"}</div><div class="sv">${i[w]} ${l[w]}</div></button>`}).join("")}</div>`;
-            h += `<div class="pb"><div class="pf" style="width:${dp}%;background:${dp === 100 ? 'var(--green)' : 'var(--accent)'}"></div></div>`;
+            else if (wo === "cardio") {
+                wi = CARDIO;
+                wl = "Cardio + Mobility";
+                wn = "Sprint run-throughs on one of the two cardio days. Progress volume before intensity. Then aerobic + full mobility."
+            }
+
+            // WORKOUT FIRST
+            if (isTraining || wo === "cardio") {
+                const wc = wi.length,
+                    wd = wi.filter(w => ck.includes(w.id)).length;
+                const wp = wc ? Math.round((wd / wc) * 100) : 0;
+                h += `<div class="sl first">${wl}</div>`;
+                h += `<div class="sn">${wn}</div>`;
+                h += `<div class="pb"><div class="pf" style="width:${wp}%;background:${wp === 100 ? 'var(--green)' : 'var(--accent)'}"></div></div>`;
+                h += wi.map(w => ci(w, ck, true)).join("");
+            } else {
+                h += `<div class="sl first">Off Day</div>`;
+                h += `<div class="ic"><div class="i2">Rest</div><div class="i3">Daily block + 30 min walk. That's it. Full recovery.</div></div>`;
+            }
+
+            // DAILY BLOCK BELOW
+            const df = D.filter(d => !(isTraining && d.skip === "training"));
+            const dd = df.filter(d => ck.includes(d.id)).length;
+            const dp = Math.round((dd / df.length) * 100);
             h += `<div class="sl">Daily Block</div>`;
             if (isTraining)
                 h += `<div class="sn">Dead hangs skipped — ${isPull ? 'hang pause on pull-up reps' : 'hanging leg raises'} covers it.</div>`;
+            h += `<div class="pb"><div class="pf" style="width:${dp}%;background:${dp === 100 ? 'var(--green)' : 'var(--accent)'}"></div></div>`;
             h += df.map(d => ci(d, ck, true)).join("");
-            if (S.wo === "pull" || S.wo === "push") {
-                h += `<div class="sl" style="margin-top:28px">${wl}</div>`;
-                h += `<div class="sn">${wn}</div>`;
-                h += `<div class="pb"><div class="pf" style="width:${wp}%;background:${wp === 100 ? 'var(--green)' : 'var(--accent)'}"></div></div>`;
-                h += wi.map(w => ci(w, ck, false)).join("");
-            } else if (S.wo === "mobility") {
-                h += `<div class="sl" style="margin-top:28px">MOBILITY + CARDIO</div>`;
-                h += `<div class="ic"><div class="i2">🏃 Sprint Run-Throughs (on one cardio day)</div><div class="i3">Warm-up drills → 3-5 × 50m at 50-60%. Walk-back recovery. Check 48hr response. Progress volume before intensity.</div></div>`;
-                h += `<div class="ic"><div class="i2">🚴 30 min Cardio</div><div class="i3">Bike or swim. Zone 1-2. No jogging yet — sprint milestones first.</div></div>`;
-                h += `<div class="ic"><div class="i3">Then full mobility routine — see Mobility tab.</div></div>`;
-            } else {
-                h += `<div class="sl" style="margin-top:28px">OFF DAY</div>`;
-                h += `<div class="ic"><div class="i2">💤 Rest</div><div class="i3">Daily block + 30 min walk. That's it.</div></div>`;
-            }
-            h += `<div style="margin-top:24px"><div class="ic"><div class="i3">🚶 <strong>Walking:</strong> 30 min daily. Include backward walking + sprint warm-up drills.</div></div></div>`;
+
+            // WALKING
+            h += `<div style="margin-top:24px"><div class="ic"><div class="i2">Walking — Daily</div><div class="i3">30 min every day. Include backward walking + sprint warm-up drills. Baseline movement + leanness tool.</div></div></div>`;
             h += `<div class="rr"><button class="bg" onclick="rt()">Reset Today</button></div>`;
             a.innerHTML = h;
         } else if (S.tab === "mobility") {
-            let h = `<div class="al"></div>`;
-            h += `<div class="sl">Mobility Routine</div>`;
-            h += `<div class="sn">2-3× per week on mobility+cardio days. Warm-up via 30 min cardio.</div>`;
-            h += `<div class="sl" style="margin-top:20px">Roll / Massage Gun</div>`;
+            let h = "";
+            h += `<div class="sl first">Mobility Routine</div>`;
+            h += `<div class="sn">2-3× per week on cardio days. Warm-up via 30 min cardio.</div>`;
+            h += `<div class="sl">Roll / Massage Gun</div>`;
             h += MR.map(m => mi(m, mk)).join("");
-            h += `<div class="sl" style="margin-top:20px">Stretch</div>`;
+            h += `<div class="sl">Stretch</div>`;
             h += MS.map(m => mi(m, mk)).join("");
-            h += `<div class="sl" style="margin-top:20px">Optional</div>`;
+            h += `<div class="sl">Optional</div>`;
             h += MO.map(m => mi(m, mk)).join("");
-            h += `<div class="sl" style="margin-top:28px">Therapist Nerve Flossing</div>`;
-            h += `<div class="sn">On mobility days. 2-3 sets of 10 smooth oscillations. No sustained holds.</div>`;
+            h += `<div class="sl">Therapist Nerve Flossing</div>`;
+            h += `<div class="sn">On cardio days. 2-3 sets of 10 smooth oscillations. No sustained holds.</div>`;
             h += `<div class="tw"><table><thead><tr><th>Exercise</th><th>Notes</th><th>Video</th></tr></thead><tbody>`;
-            h += TH.map(t => `<tr><td style="font-weight:500;color:var(--white)">${t.n}</td><td style="font-size:13px;color:var(--dim)">${t.no}</td><td><a href="${t.l}" target="_blank">▶ Watch</a></td></tr>`).join("");
+            h += TH.map(t => `<tr><td style="font-weight:500;color:var(--white)">${t.n}</td><td style="color:var(--dim)">${t.no}</td><td><a href="${t.l}" target="_blank">▶ Watch</a></td></tr>`).join("");
             h += `</tbody></table></div>`;
             h += `<div class="sn">Popliteus release + chin tucks are in the daily block. Pectineus + quadratus femoris dropped.</div>`;
             h += `<div class="rr"><button class="bg" onclick="rt()">Reset Checks</button></div>`;
             a.innerHTML = h;
         } else {
-            a.innerHTML = `<div class="al"></div>
-            <div class="sl">Phase Gates</div>
+            a.innerHTML = `
+            <div class="sl first">Phase Gates</div>
             <div class="gate cleared"><div class="gh"><span class="gn">Gate 1 — Phase 3</span><span class="g2">✓ CLEARED</span></div><div class="gb"><div class="gt2"><span>Test</span> 25 continuous pain-free double-leg heel raises.</div></div></div>
             <div class="gate cleared"><div class="gh"><span class="gn">Gate 2 — Phase 4</span><span class="g2">✓ CLEARED WK 8</span></div><div class="gb"><div class="gt2"><span>Test</span> 3 × 15 single-leg raises pain-free. Symmetrical dorsiflexion ROM.</div><div class="gl">Deficit calf raises active on pull days.</div><div class="gl">BSS active on push days.</div><div class="gl">Sprint run-throughs begun — 50-60% on turf.</div></div></div>
             <div class="gate"><div class="gh"><span class="gn">Gate 3 — Phase 5</span><span class="g2">NEXT TARGET</span></div><div class="gb"><div class="gt2"><span>Test</span> 25+ single-leg raises matching other side. Hop LSI ≥90%. ≥90% plantarflexion LSI.</div><div class="gl">Plyometrics: double-leg → single-leg → bounding. CMJs return.</div><div class="gl">Sprint: progress to 80% → 100%. Each pain-free.</div><div class="gl">Calf raise target: ≥2× bodyweight single-leg.</div><div class="gl">Jogging unlocks here — after sprint milestones.</div></div></div>
             <div class="gate"><div class="gh"><span class="gn">Gate 4 — Full Return</span><span class="g2">WK 20-24</span></div><div class="gb"><div class="gt2"><span>Test</span> Hop LSI ≥95%. Pain-free max sprint. One week no symptoms.</div><div class="gl">All restrictions lifted. Contrast training + block starts resume.</div><div class="gl">1 week full training per 2 weeks missed.</div></div></div>
 
-            <div class="sl" style="margin-top:28px">Sprint Return Progression</div>
+            <div class="sl">Sprint Return Progression</div>
             <div class="sn">Increase volume first (more reps), then intensity (faster). Never both in the same session. Check 48hr response each time.</div>
-            <div class="tw"><table><thead><tr><th>Stage</th><th>Reps × Distance</th><th>Effort</th><th>Duration</th></tr></thead><tbody>
+            <div class="tw"><table><thead><tr><th>Stage</th><th>Reps × Distance</th><th>Effort</th><th>Notes</th></tr></thead><tbody>
             <tr><td style="color:var(--green);font-weight:600">Now (wk 8-9)</td><td>3 × 50m</td><td>50-60%</td><td>2-3 more pain-free sessions</td></tr>
             <tr><td>Weeks 9-10</td><td>4-5 × 50-60m</td><td>50-60%</td><td>Volume up, intensity same</td></tr>
             <tr><td>Weeks 10-12</td><td>4-5 × 60m</td><td>60-70%</td><td>Intensity up</td></tr>
             <tr><td>Weeks 12-14</td><td>4-5 × 60-80m</td><td>70-80%</td><td>Approaching Gate 3</td></tr>
             </tbody></table></div>
 
-            <div class="sl" style="margin-top:28px">Timeline</div>
+            <div class="sl">Timeline</div>
             <div class="tl">
             <div class="ti cleared"><div class="t3">WK 5-6 · CLEARED</div><div class="t4">Gate 1 — Phase 3</div><div class="t5">Seated calf raises began.</div></div>
             <div class="ti cleared"><div class="t3">WK 8 · CLEARED</div><div class="t4">Gate 2 — Phase 4</div><div class="t5">Deficit calf raises. BSS. Sprint run-throughs begun.</div></div>
@@ -1032,7 +1169,7 @@
             <div class="ti"><div class="t3">WK 20-24 · SEP-OCT</div><div class="t4">Full Return</div><div class="t5">Max velocity. Block starts last. Arrive Hua Hin rebuilt.</div></div>
             </div>
 
-            <div class="sl" style="margin-top:28px">How the Tear Heals</div>
+            <div class="sl">How the Tear Heals</div>
             <div class="bio"><div class="bt">Phase 1 — Destruction · Hours 0-48</div><p>Torn fibers retract. Hematoma forms scaffold. Neutrophils (hrs 1-24), macrophages (hrs 24-72) secrete growth factors activating satellite cells.</p></div>
             <div class="bio"><div class="bt">Phase 2 — Repair · Days 3-21</div><p>Satellite cells fuse into myotubes bridging the gap. Fibroblasts lay Type III collagen — weak, disorganized. Grade II gap too large to fully bridge; scar fills the rest. BPC-157 supports via angiogenesis. TB-500 promotes cell migration.</p></div>
             <div class="bio"><div class="bt">Phase 3 — Remodeling · Weeks 3-6+ Months</div><p>Type III → Type I collagen. Organized along stress lines. Concentric = moderate stress. Eccentric = highest demand — remodeling stimulus if mature, re-tear if too early.</p></div>
