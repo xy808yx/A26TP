@@ -803,6 +803,13 @@
         t: "5"
     },
     {
+        id: "pf",
+        n: "Fast Calf Raises",
+        r: "3 × 10 · light · fast up / controlled down · metronome ~132bpm · before heavy raises",
+        t: "SPEED",
+        ph: 5
+    },
+    {
         id: "p6",
         n: "Deficit Single-Leg Calf Raise",
         r: "3 × 15/leg · 3s up, 3s down → weighted when easy",
@@ -843,9 +850,16 @@
     ];
     const CARDIO = [
     {
+        id: "cl",
+        n: "Stick Landings",
+        r: "Fri only · 2-3 × 5 · before sprints · low step or in place · land soft & silent, hold 2-3s",
+        t: "PLYO",
+        ph: 5
+    },
+    {
         id: "c1",
         n: "Sprint Run-Throughs",
-        r: "3-5 × 50m @ 50-60% · walk-back recovery · one cardio day",
+        r: "3-5 × 50m @ 50-60% · walk-back recovery · Fri (not the fasted Tue)",
         t: "SPRINT"
     },
     {
@@ -989,15 +1003,17 @@
         l: "https://www.youtube.com/watch?v=KIYNdFvM4vc"
     },
     ];
-    // 7-day rotation: Mon=Pull, Tue=Push, Wed=Cardio, Thu=Pull, Fri=Push, Sat=Cardio, Sun=Off
+    // CURRENT PHASE — bump to 5 when Gate 3 clears. Activates Phase-5 work (fast calf raises, stick landings) in TODAY.
+    const PHASE = 4;
+    // 7-day rotation: Sun=Rest(fast begins), Mon=Pull, Tue=Cardio(fasted), Wed=Push, Thu=Pull, Fri=Cardio, Sat=Push
     const ROT = {
+        0: "off",
         1: "pull",
-        2: "push",
-        3: "cardio",
+        2: "cardio",
+        3: "push",
         4: "pull",
-        5: "push",
-        6: "cardio",
-        0: "off"
+        5: "cardio",
+        6: "push"
     };
     const DABBR = {
         1: "Mon",
@@ -1087,7 +1103,7 @@
             todayDow = new Date().getDay(),
             ck = S.ck[k] || [],
             mk = S.mk[k] || [];
-        document.getElementById("ns").textContent = `${DY[todayDow]} · ${k} · Phase 4`;
+        document.getElementById("ns").textContent = `${DY[todayDow]} · ${k} · Phase ${PHASE}`;
         const a = document.getElementById("app");
         if (S.tab === "today") {
             let h = "";
@@ -1120,8 +1136,9 @@
             else if (wo === "cardio") {
                 wi = CARDIO;
                 wl = "Cardio + Mobility";
-                wn = "Sprint run-throughs on one of the two cardio days. Progress volume before intensity. Then aerobic + full mobility."
+                wn = "Sprints on Friday — Tuesday is the fasted recovery day (bike/swim + mobility only). Volume before intensity. Then aerobic + full mobility."
             }
+            wi = wi.filter(w => !(w.ph && w.ph > PHASE));
 
             // WORKOUT FIRST
             if (isTraining || wo === "cardio") {
@@ -1173,9 +1190,9 @@
             a.innerHTML = `
             <div class="sl first">Phase Gates</div>
             <div class="gate cleared"><div class="gh"><span class="gn">Gate 1 — Phase 3</span><span class="g2">✓ CLEARED</span></div><div class="gb"><div class="gt2"><span>Test</span> 25 continuous pain-free double-leg heel raises.</div></div></div>
-            <div class="gate cleared"><div class="gh"><span class="gn">Gate 2 — Phase 4</span><span class="g2">✓ CLEARED WK 8</span></div><div class="gb"><div class="gt2"><span>Test</span> 3 × 15 single-leg raises pain-free. Symmetrical dorsiflexion ROM.</div><div class="gl">Deficit calf raises active on pull days.</div><div class="gl">BSS active on push days.</div><div class="gl">Sprint run-throughs begun — 50-60% on turf.</div></div></div>
-            <div class="gate"><div class="gh"><span class="gn">Gate 3 — Phase 5</span><span class="g2">NEXT TARGET</span></div><div class="gb"><div class="gt2"><span>Test</span> 25+ single-leg raises matching other side. Hop LSI ≥90%. ≥90% plantarflexion LSI.</div><div class="gl">Plyometrics: double-leg → single-leg → bounding. CMJs return.</div><div class="gl">Sprint: progress to 80% → 100%. Each pain-free.</div><div class="gl">Calf raise target: ≥2× bodyweight single-leg.</div><div class="gl">Jogging unlocks here — after sprint milestones.</div></div></div>
-            <div class="gate"><div class="gh"><span class="gn">Gate 4 — Full Return</span><span class="g2">WK 20-24</span></div><div class="gb"><div class="gt2"><span>Test</span> Hop LSI ≥95%. Pain-free max sprint. One week no symptoms.</div><div class="gl">All restrictions lifted. Contrast training + block starts resume.</div><div class="gl">1 week full training per 2 weeks missed.</div></div></div>
+            <div class="gate cleared"><div class="gh"><span class="gn">Gate 2 — Phase 4</span><span class="g2">✓ CLEARED WK 8</span></div><div class="gb"><div class="gt2"><span>Test</span> 3 × 15 single-leg raises pain-free. Symmetrical dorsiflexion ROM.</div><div class="gl">Deficit calf raises (slow, 3s/3s) active on pull days — structural base.</div><div class="gl">BSS active on push days.</div><div class="gl">Sprint run-throughs begun — 50-60% on turf.</div><div class="gl">Bridge work (fast raises, stick landings) prepped but held for Phase 5 — current week steady.</div></div></div>
+            <div class="gate"><div class="gh"><span class="gn">Gate 3 — Phase 5</span><span class="g2">NEXT TARGET</span></div><div class="gb"><div class="gt2"><span>Test</span> 25+ single-leg raises matching other side. Hop LSI ≥90%. ≥90% plantarflexion LSI. ≥2× BW single-leg raise. 10-20 single-leg hops in place, pain-free.</div><div class="gl">Fast calf raises — 3×10 light, crisp, before heavy raises on pull days. Metronome ~132bpm. Speed-of-contraction bridge. Add this first.</div><div class="gl">Stick landings — Friday, fresh, before sprints. 2-3×5, soft &amp; silent, hold 2-3s. Absorption before reactive. Add second, once fast raises are clean.</div><div class="gl">Pogos — bilateral, low, stiff ankle, toes up. Foundational sprint plyo, most calf-direct → waits for the full rep count above.</div><div class="gl">Low horizontal bounds — broad jump + stick → short controlled bounds. Distance before speed.</div><div class="gl">Box jump CHECK (test, not training): 5 bilateral onto ~30cm + 5 unilateral onto 15-20cm, &lt;10% asymmetry. Confirms reactive readiness.</div><div class="gl">Right-side hip/glute hinge (RDLs, step-downs) 2-3×/wk — proximal ≈30% of plantarflexion force; addresses the R-soleus overload chain.</div><div class="gl">Sprint: progress 80% → 95%, each pain-free.</div><div class="gl">Jogging unlocks here — after sprint milestones.</div></div></div>
+            <div class="gate"><div class="gh"><span class="gn">Gate 4 — Full Return</span><span class="g2">WK 20-24</span></div><div class="gb"><div class="gt2"><span>Test</span> Hop LSI ≥95%. Pain-free max sprint. One week no symptoms.</div><div class="gl">Single-leg hops → continuous → triple hops. Reactive, sport-specific top of the ladder.</div><div class="gl">True max sprint — full send. Block starts resume LAST.</div><div class="gl">1 week full training per 2 weeks missed.</div></div></div>
 
             <div class="sl">Sprint Return Progression</div>
             <div class="sn">Increase volume first (more reps), then intensity (faster). Never both in the same session. Check 48hr response each time.</div>
@@ -1186,11 +1203,26 @@
             <tr><td>Weeks 12-14</td><td>4-5 × 60-80m</td><td>70-80%</td><td>Approaching Gate 3</td></tr>
             </tbody></table></div>
 
+            <div class="sl">Plyometric Progression</div>
+            <div class="sn">Earn the right to be reactive by first proving you can absorb. Count contacts not sets — start ~40-60 quality contacts, increase ≤10-20%/wk. Fresh, before lifts. 1-2×/wk, never back-to-back with sprint or weighted calf.</div>
+            <div class="tw"><table><thead><tr><th>Stage</th><th>Exercise</th><th>Gate</th><th>Notes</th></tr></thead><tbody>
+            <tr><td style="color:var(--green);font-weight:600">Base</td><td>Heavy deficit raises</td><td>Now</td><td>Slow 3s/3s — structural</td></tr>
+            <tr><td>Bridge</td><td>Fast calf raises</td><td>Gate 3</td><td>Light, crisp — speed of contraction</td></tr>
+            <tr><td>1</td><td>Stick landings</td><td>Gate 3</td><td>Absorption / eccentric brake</td></tr>
+            <tr><td>2</td><td>Pogos (bilateral)</td><td>Gate 3</td><td>Low, stiff ankle, toes up</td></tr>
+            <tr><td style="color:var(--cardio);font-weight:600">Test</td><td>Box jump check</td><td>Gate 3</td><td>Readiness test, not training</td></tr>
+            <tr><td>3</td><td>Low horizontal bounds</td><td>Gate 3</td><td>Distance before speed</td></tr>
+            <tr><td>4</td><td>Single-leg → triple hops</td><td>Gate 4</td><td>Reactive, sport-specific</td></tr>
+            </tbody></table></div>
+
+            <div class="sl muted">Parked &amp; Cut</div>
+            <div class="gate"><div class="gb"><div class="gt2"><span>Parked till Gate 3</span> Reactive load on healed tissue, waits for the rep count.</div><div class="gl">Pogos, bounds, box-jump test — reactive calf demand.</div><div class="gl">Loaded hip hinge (RDLs), Nordics, single-leg RDLs — eccentric load routes through the calf.</div><div class="gt2" style="margin-top:14px"><span>Cut</span> Bad risk/reward or no sprint value.</div><div class="gl">Depth / drop jumps (shock method) — needs ≥95% LSI, tendon-lag tail bites hardest.</div><div class="gl">Tuck jumps — no value over pogos + bounds.</div><div class="gl">Box jumps as training — keep only as the Gate 3 test.</div></div></div>
+
             <div class="sl">Timeline</div>
             <div class="tl">
             <div class="ti cleared"><div class="t3">WK 5-6 · CLEARED</div><div class="t4">Gate 1 — Phase 3</div><div class="t5">Seated calf raises began.</div></div>
             <div class="ti cleared"><div class="t3">WK 8 · CLEARED</div><div class="t4">Gate 2 — Phase 4</div><div class="t5">Deficit calf raises. BSS. Sprint run-throughs begun.</div></div>
-            <div class="ti current"><div class="t3">GATE 3 · TARGET</div><div class="t4">Phase 5 — Sprint + Plyo</div><div class="t5">Plyometrics + full sprint progression. Jogging unlocks after.</div></div>
+            <div class="ti current"><div class="t3">GATE 3 · TARGET</div><div class="t4">Phase 5 — Sprint + Plyo</div><div class="t5">Pogos, bounds, full sprint progression to 95%. Jogging unlocks after.</div></div>
             <div class="ti"><div class="t3">WK 20-24 · SEP-OCT</div><div class="t4">Full Return</div><div class="t5">Max velocity. Block starts last. Arrive Hua Hin rebuilt.</div></div>
             </div>
 
@@ -1200,7 +1232,7 @@
             <div class="bio"><div class="bt">Phase 3 — Remodeling · Weeks 3-6+ Months</div><p>Type III → Type I collagen. Organized along stress lines. Concentric = moderate stress. Eccentric = highest demand — remodeling stimulus if mature, re-tear if too early.</p></div>
             <div class="bio warn"><div class="bt">Why Re-Tears Happen</div><p>Scar is stiffer than original muscle. Junction between scar and healthy tissue = weakest link. Re-tears at margins. Bulletproofing = surrounding tissue strong enough the junction never sees failure-threshold forces.</p></div>
             <div class="bio warn"><div class="bt">Peptide False Confidence</div><p>BPC-157/TB-500 accelerate early repair. Pain drops. But collagen maturation runs on its own clock. Tissue feels healed while architecture is immature. Gates test structure, not perception.</p></div>
-            <div class="fl">PHASE 4 ACTIVE · UPDATE AT GATE 3</div>`;
+            <div class="fl">PHASE ${PHASE} ACTIVE · ${PHASE < 5 ? 'UPDATE AT GATE 3' : 'SPEED + PLYO LIVE'}</div>`;
         }
     }
     ld();
