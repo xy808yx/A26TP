@@ -743,35 +743,45 @@
     {
         id: "d1",
         n: "R. Posterior Tibial Nerve Floss",
-        r: "2-3 × 10 oscillations",
+        r: "10 oscillations",
         l: "https://youtu.be/x1AtxQkJCu0"
     },
     {
         id: "d2",
         n: "Ulnar Nerve Floss",
-        r: "2-3 × 10 / side"
+        r: "10 / side"
     },
     {
         id: "d3",
         n: "Median Nerve Floss",
-        r: "2-3 × 10 / side"
+        r: "10 / side"
     },
     {
         id: "d4",
         n: "R. Popliteus Release",
-        r: "Per therapist — daily",
+        r: "Per therapist",
         l: "https://www.youtube.com/watch?v=HGE8_co6Dn0"
+    },
+    {
+        id: "d7",
+        n: "Couch Stretch",
+        r: "30s / side"
+    },
+    {
+        id: "d8",
+        n: "World's Greatest Stretch",
+        r: "5 / side · 5s holds"
     },
     {
         id: "d5",
         n: "Dead Hangs",
-        r: "Accumulate 2 min",
+        r: "1 min",
         skip: "training"
     },
     {
         id: "d6",
         n: "Chin Tucks",
-        r: "10 × 5s × 2 sets — daily for FHP"
+        r: "10 × 5s — daily for FHP"
     },
     ];
     const PULL = [
@@ -1162,6 +1172,7 @@
             const dd = df.filter(d => ck.includes(d.id)).length;
             const dp = Math.round((dd / df.length) * 100);
             h += `<div class="sl">Daily Block</div>`;
+            h += `<div class="sn">Run the full list twice — one set of each per pass.</div>`;
             if (isTraining)
                 h += `<div class="sn">Dead hangs skipped — ${isPull ? 'hang pause on pull-up reps' : 'hanging leg raises'} covers it.</div>`;
             h += `<div class="pb"><div class="pf" style="width:${dp}%;background:${dp === 100 ? 'var(--green)' : 'var(--accent)'}"></div></div>`;
