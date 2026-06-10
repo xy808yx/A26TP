@@ -4,33 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return to Training</title>
+    <meta name="theme-color" content="#0d0b09">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000000'/%3E%3Cpath d='M8 20 L16 12 L24 20' fill='none' stroke='%23ff6a1f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
     <link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAABmJLR0QA/wD/AP+gvaeTAAAB7ElEQVRoge2YPUvDQBjHn8YOBjRiBydTp4KTdVa3Ut8+hB9BpbSLX0CQqPgtXB0qOKshOPi2CmJxsBVJX6Sa2Hh1eBCENukluXPQ5zeFhHue/+8uN9wBEARBEARBEARBEMT/JCGvdGYsuTqlAsBx5f2u6UnqIktgY2bUmEslFQAAj0HRtA9uX2U0GpJRtJDV9hdSyvfkKAlYTqsdBqdPrvBe4gUKWW13frz3fW5yWIaDYAG/9IgMB5ECwekR4Q7CBIqzmjEoPZKbHG53umZVjIMYgUKWNz2yqAvb0wIE+Of+J6LWIa5A8NxvWY1y5X0prfb9KmQdYgkE79otq7F92bRqbuuj6+cQf09HF+BJj89SHSIK8KdH5DlEEQibHpHkEFogWnpEhkM4gTjpEeEOIQTip0fEOvAKbGa1Pf/0JbO+c9XiLAUAVs1td7qLuq+D7bCL5w+eUlwCmbHk0cqE4nP4KZl14zpEesSsBjnkdfXwrm27bGAdLoG16RE8HPYSLT0S4KAk4P7106oN/pGUaL2ROOkR47pVMutxKnAJlB/evJ7FjJ8e6evgMSg/vPEM5/qFbJe9OGxJV3EbeAwK5/b+jbBDull1bYflf9RfP7NPHh2esSFuJWRfk/zONQxBEARBEARBEARB/BW+ALmTNcvH5ELRAAAAAElFTkSuQmCC">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Return">
     <style>
     :root {
-        --bg: #0c0c0c;
-        --surface: #161616;
-        --surface2: #1d1d1d;
-        --border: #2a2a2a;
-        --border-h: #3a3a3a;
-        --text: #ece8e2;
-        --dim: #9a9690;
-        --muted: #65615c;
-        --accent: #ff6a1f;
-        --accent-dim: #c25a1c;
-        --accent-glow: rgba(255, 106, 31, 0.12);
-        --white: #f7f4ef;
-        --red: #c45c4a;
-        --green: #6aac6a;
-        --green-bg: rgba(106, 172, 106, 0.09);
-        --green-border: rgba(106, 172, 106, 0.3);
-        --cardio: #7a9cc4;
-        --cardio-dim: #4a6488
+        --bg: #0d0b09;
+        --surface: #171310;
+        --surface2: #1e1915;
+        --card-top: #191511;
+        --card-bot: #141110;
+        --border: #272120;
+        --border-h: #3b332c;
+        --text: #e9e2d6;
+        --dim: #9c948a;
+        --muted: #675f56;
+        --ember: #ff6f2e;
+        --ember-hot: #ffa14d;
+        --ember-dim: #c2581f;
+        --ember-soft: rgba(255, 111, 46, 0.1);
+        --ember-line: rgba(255, 111, 46, 0.28);
+        --sage: #7fb069;
+        --sage-dim: #5e8a4e;
+        --sage-bg: rgba(127, 176, 105, 0.08);
+        --sage-border: rgba(127, 176, 105, 0.32);
+        --blue: #7e9cc0;
+        --blue-dim: #4a6488;
+        --blue-soft: rgba(126, 156, 192, 0.1);
+        --clay: #c4604a;
+        --display: 'Anton', sans-serif;
+        --sans: 'Barlow Semi Condensed', sans-serif;
+        --mono: 'Chakra Petch', monospace;
+        --stencil: 'Saira Stencil One', sans-serif;
     }
 
     * {
@@ -39,22 +49,45 @@
         box-sizing: border-box
     }
 
+    html {
+        background: var(--bg)
+    }
+
     body {
         background: var(--bg);
         color: var(--text);
-        font-family: 'Outfit', sans-serif;
+        font-family: var(--sans);
         -webkit-font-smoothing: antialiased;
-        font-size: 16px
+        font-size: 16px;
+        min-height: 100vh
+    }/* atmosphere — stadium glow + film grain */
+
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(58% 38% at 50% -8%, rgba(255, 111, 46, 0.075), transparent 70%), radial-gradient(40% 30% at 88% 110%, rgba(126, 156, 192, 0.045), transparent 70%)
     }
 
+    body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 99;
+        pointer-events: none;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")
+    }/* ───── nav ───── */
     .nav {
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(12, 12, 12, 0.96);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border);
-        padding: 16px 24px
+        background: rgba(13, 11, 9, 0.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border)
     }
 
     .ni {
@@ -62,276 +95,678 @@
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        align-items: center
+        align-items: center;
+        padding: 15px 24px;
+        gap: 16px
     }
 
-    .nt {
-        font-family: 'DM Serif Display', serif;
-        font-size: 26px;
-        color: var(--white);
-        line-height: 1
+    .wm {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        color: var(--dim)
     }
 
-    .ns {
-        font-size: 13px;
-        color: var(--dim);
-        margin-top: 5px;
-        letter-spacing: 0.5px
+    .wm svg {
+        flex-shrink: 0
     }
 
     .tabs {
         display: flex;
-        gap: 5px
+        gap: 4px
     }
 
     .tab {
         background: transparent;
-        border: 1px solid var(--border);
-        border-radius: 9px;
-        padding: 10px 18px;
-        color: var(--dim);
-        font-size: 13px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 9px 15px;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 11px;
         font-weight: 600;
         cursor: pointer;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
-        transition: all 0.25s
+        letter-spacing: 1.8px;
+        transition: color .2s, background .2s, border-color .2s
     }
 
     .tab:hover {
-        border-color: var(--border-h);
-        color: var(--text)
+        color: var(--text);
+        background: var(--surface)
     }
 
     .tab.active {
-        background: var(--accent-dim);
-        border-color: var(--accent-dim);
-        color: var(--white)
+        background: var(--ember-soft);
+        border-color: var(--ember-line);
+        color: var(--ember)
     }
 
     .co {
         max-width: 720px;
         margin: 0 auto;
-        padding: 24px 24px 120px
-    }/* WEEK ROTATION STRIP */
+        padding: 28px 24px 120px;
+        position: relative;
+        z-index: 1
+    }/* ───── entrance ───── */
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform:translateY(12px)
+        }
+
+        to {
+            opacity: 1;
+            transform: none
+        }
+    }
+
+    .co.enter > * {
+        animation: rise .45s cubic-bezier(.22, 1, .36, 1) both
+    }
+
+    .co.enter > *:nth-child(1) {
+        animation-delay:.02s
+    }
+
+    .co.enter > *:nth-child(2) {
+        animation-delay: .06s
+    }
+
+    .co.enter > *:nth-child(3) {
+        animation-delay:.1s
+    }
+
+    .co.enter > *:nth-child(4) {
+        animation-delay: .13s
+    }
+
+    .co.enter > *:nth-child(5) {
+        animation-delay:.16s
+    }
+
+    .co.enter > *:nth-child(6) {
+        animation-delay: .19s
+    }
+
+    .co.enter > *:nth-child(7) {
+        animation-delay:.21s
+    }
+
+    .co.enter > *:nth-child(8) {
+        animation-delay: .23s
+    }
+
+    .co.enter > *:nth-child(9) {
+        animation-delay:.25s
+    }
+
+    .co.enter > *:nth-child(n + 10) {
+        animation-delay: .27s
+    }/* ───── hero ───── */
+    .hero {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        margin: 8px 0 26px;
+        position: relative
+    }
+
+    .ring-wrap {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        flex-shrink: 0
+    }
+
+    .ring-track {
+        fill: none;
+        stroke: #242019;
+        stroke-width: 6
+    }
+
+    .ring-fill {
+        fill: none;
+        stroke: url(#rg);
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        transition: stroke-dashoffset .7s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .ring-fill.full {
+        stroke: var(--sage)
+    }
+
+    .ring-num {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--display);
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        color: var(--text);
+        font-variant-numeric: tabular-nums
+    }
+
+    .ring-num span {
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 400;
+        margin-left: 1px
+    }
+
+    .hero.complete .ring-num {
+        color: var(--sage)
+    }
+
+    .hero-tx {
+        min-width: 0
+    }
+
+    .eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--ember);
+        margin-bottom: 8px
+    }
+
+    .eyebrow .sep {
+        color: var(--muted);
+        margin: 0 7px
+    }
+
+    .eyebrow .dimmed {
+        color: var(--dim)
+    }
+
+    .hero-h {
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: 48px;
+        line-height: 0.98;
+        color: var(--text);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        transform: skewX(-4deg);
+        transform-origin: left bottom
+    }
+
+    .hero-done {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 12px;
+        font-family: var(--stencil);
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 3px;
+        color: var(--sage);
+        border: 1px dashed var(--sage-border);
+        background: var(--sage-bg);
+        border-radius: 3px;
+        padding: 6px 12px;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity .4s, transform .4s
+    }
+
+    .hero.complete .hero-done {
+        opacity: 1;
+        transform: none
+    }
+
+    .phase-mark {
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-54%);
+        font-family: var(--stencil);
+        font-weight: 400;
+        font-size: 140px;
+        line-height: 1;
+        color: rgba(233, 226, 214, 0.055);
+        pointer-events: none;
+        user-select: none
+    }
+
+    .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 14px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 7px 14px;
+        color: var(--dim);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: border-color .2s, color .2s
+    }
+
+    .back:hover {
+        border-color: var(--ember-line);
+        color: var(--ember)
+    }/* ───── week strip ───── */
     .week {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 6px;
-        margin-bottom: 28px
+        margin-bottom: 30px
     }
 
     .day {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 14px 4px;
+        border-radius: 8px;
+        padding: 12px 4px 11px;
         cursor: pointer;
         text-align: center;
-        transition: all 0.2s;
-        position: relative;
-        overflow: hidden
+        transition: border-color .2s, background .2s, transform .15s;
+        position: relative
     }
 
     .day:hover {
         border-color: var(--border-h);
-        background: var(--surface2)
+        background: var(--surface2);
+        transform: translateY(-1px)
     }
 
     .day .dl {
-        font-size: 12px;
+        font-family: var(--mono);
+        font-size: 10.5px;
         font-weight: 600;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         color: var(--muted);
         text-transform: uppercase;
-        margin-bottom: 8px
+        margin-bottom: 7px
     }
 
     .day .dw {
-        font-size: 13px;
+        font-size: 11.5px;
         font-weight: 600;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
         color: var(--dim);
         line-height: 1.2
     }
 
-    .day.sel {
-        background: var(--surface2);
-        border-color: var(--accent);
-        box-shadow: 0 0 0 1px var(--accent)
-    }
-
-    .day.sel .dl {
-        color: var(--accent)
-    }
-
-    .day.sel .dw {
-        color: var(--white)
-    }
-
-    .day.pull .dw {
-        color: var(--accent)
-    }
-
-    .day.push .dw {
-        color: var(--accent)
+    .day.pull .dw, .day.push .dw {
+        color: var(--ember)
     }
 
     .day.cardio .dw {
-        color: var(--cardio)
+        color: var(--blue)
     }
 
     .day.off .dw {
         color: var(--muted)
     }
 
-    .day .today-dot {
-        position: absolute;
-        top: 6px;
-        right: 6px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--accent)
+    .day.sel {
+        background: var(--surface2);
+        border-color: var(--ember);
+        box-shadow: 0 0 0 1px var(--ember), 0 4px 18px -6px rgba(255, 111, 46, 0.35)
     }
 
-    .day.sel.pull, .day.sel.push {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 1px var(--accent)
+    .day.sel .dl {
+        color: var(--ember)
     }
 
     .day.sel.cardio {
-        border-color: var(--cardio);
-        box-shadow: 0 0 0 1px var(--cardio)
+        border-color: var(--blue);
+        box-shadow: 0 0 0 1px var(--blue), 0 4px 18px -6px rgba(126, 156, 192, 0.35)
     }
 
     .day.sel.cardio .dl {
-        color: var(--cardio)
+        color: var(--blue)
     }
 
-    .sl {
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 2.5px;
-        color: var(--accent);
-        text-transform: uppercase;
-        margin-bottom: 14px;
-        margin-top: 32px
+    .day .today-dot {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--ember);
+        box-shadow: 0 0 6px rgba(255, 111, 46, 0.8)
+    }/* ───── section headers ───── */
+    .sh {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin: 36px 0 14px
     }
 
-    .sl.first {
+    .sh.first {
         margin-top: 0
     }
 
-    .sl.muted {
-        color: var(--muted)
+    .sh .lab {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        color: var(--ember);
+        text-transform: uppercase;
+        transition: color .3s
     }
 
-    .sn {
+    .sh .rule {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+        transform: translateY(-3px)
+    }
+
+    .sh .cnt {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        transition: color .3s
+    }
+
+    .sh.done .lab, .sh.done .cnt {
+        color: var(--sage)
+    }
+
+    .sh.quiet .lab {
+        color: var(--muted)
+    }/* coach's note */
+    .note {
+        font-family: var(--sans);
         font-size: 15px;
         color: var(--dim);
-        font-style: italic;
-        margin-bottom: 16px;
         line-height: 1.6;
-        padding: 12px 18px;
-        border-left: 3px solid var(--accent-dim);
-        background: var(--accent-glow);
-        border-radius: 0 10px 10px 0
-    }
-
+        margin-bottom: 16px;
+        padding: 2px 0 2px 16px;
+        border-left: 2px solid var(--ember-line)
+    }/* progress bar */
     .pb {
-        height: 6px;
-        background: var(--border);
+        height: 5px;
+        background: #221d18;
         border-radius: 3px;
         overflow: hidden;
-        margin-bottom: 20px
+        margin-bottom: 18px
     }
 
     .pf {
         height: 100%;
+        width: 0;
         border-radius: 3px;
-        transition: width 0.4s ease, background 0.3s
+        background: linear-gradient(90deg, var(--ember-dim), var(--ember));
+        box-shadow: 0 0 10px rgba(255, 111, 46, 0.4);
+        transition: width .55s cubic-bezier(.22, 1, .36, 1), background .3s
     }
 
+    .pf.full {
+        background: linear-gradient(90deg, var(--sage-dim), var(--sage));
+        box-shadow: 0 0 10px rgba(127, 176, 105, 0.4)
+    }/* ───── check items ───── */
     .ci {
         display: flex;
         align-items: center;
         gap: 16px;
-        background: var(--surface);
+        background: linear-gradient(180deg, var(--card-top), var(--card-bot));
         border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 16px 20px;
+        border-radius: 8px;
+        padding: 15px 18px;
         margin-bottom: 8px;
         cursor: pointer;
-        transition: all 0.22s;
-        user-select: none
+        transition: border-color .22s, transform .15s, box-shadow .22s, opacity .3s;
+        user-select: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 1px 3px rgba(0, 0, 0, 0.35)
     }
 
     .ci:hover {
         border-color: var(--border-h);
-        background: var(--surface2)
+        transform: translateY(-1px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 6px 16px -8px rgba(0, 0, 0, 0.6)
+    }
+
+    .ci:active {
+        transform: scale(0.992)
     }
 
     .ci.done {
-        background: var(--green-bg);
-        border-color: var(--green-border)
+        border-color: var(--sage-border);
+        background: linear-gradient(180deg, rgba(127, 176, 105, 0.07), rgba(127, 176, 105, 0.03));
+        opacity: 0.78
+    }
+
+    .ci.ro {
+        cursor: default;
+        opacity: 0.62
+    }
+
+    .ci.ro:hover {
+        border-color: var(--border);
+        transform: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 1px 3px rgba(0, 0, 0, 0.35)
     }
 
     .cb {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        border: 2px solid var(--border);
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+        border: 2px solid #36302a;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--green);
-        font-size: 17px;
-        font-weight: 700;
         flex-shrink: 0;
-        transition: all 0.22s
+        transition: background .25s, border-color .25s;
+        color: var(--bg)
+    }
+
+    .cb svg {
+        width: 15px;
+        height: 15px
+    }
+
+    .cb path {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        transition: stroke-dashoffset .3s ease .05s
+    }
+
+    .ci:not(.done):not(.ro):hover .cb {
+        border-color: var(--ember-dim)
+    }
+
+    @keyframes pop {
+        0% {
+            transform:scale(1)
+        }
+
+        45% {
+            transform:scale(1.18)
+        }
+
+        100% {
+            transform: scale(1)
+        }
     }
 
     .ci.done .cb {
-        border-color: var(--green);
-        background: rgba(106, 172, 106, 0.16)
+        background: var(--sage);
+        border-color: var(--sage);
+        animation: pop .35s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .ci.done .cb path {
+        stroke-dashoffset: 0
+    }
+
+    .cm {
+        flex: 1;
+        min-width: 0
     }
 
     .cn {
-        font-size: 17px;
-        font-weight: 500;
-        color: var(--white);
-        transition: color 0.2s;
-        line-height: 1.3
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        color: var(--text);
+        line-height: 1.35
     }
 
-    .ci.done .cn {
-        color: var(--green)
+    .cn .nm {
+        background-image: linear-gradient(currentColor, currentColor);
+        background-repeat: no-repeat;
+        background-position: 0 58%;
+        background-size: 0% 1.5px;
+        transition: background-size .35s ease, color .25s
+    }
+
+    .ci.done .cn .nm {
+        color: var(--dim);
+        background-size: 100% 1.5px
     }
 
     .cr {
-        font-size: 14px;
-        color: var(--dim);
-        margin-top: 3px
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: #8b8278;
+        margin-top: 4px;
+        line-height: 1.5
+    }
+
+    .ci.done .cr {
+        color: var(--muted)
+    }
+
+    .vl {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ember);
+        text-decoration: none;
+        margin-left: 9px;
+        letter-spacing: 0.5px;
+        white-space: nowrap
+    }
+
+    .vl:hover {
+        text-decoration: underline
     }
 
     .ct {
-        font-size: 11px;
+        font-family: var(--mono);
+        font-size: 10px;
         font-weight: 600;
-        color: var(--accent-dim);
-        letter-spacing: 1px;
+        color: var(--ember);
+        letter-spacing: 1.5px;
         padding: 4px 9px;
-        background: var(--surface2);
-        border-radius: 5px;
-        margin-left: auto;
+        background: var(--ember-soft);
+        border: 1px solid var(--ember-line);
+        border-radius: 3px;
         flex-shrink: 0;
-        border: 1px solid var(--border)
+        transition: opacity .3s
     }
 
+    .ct.blue {
+        color: var(--blue);
+        background: var(--blue-soft);
+        border-color: rgba(126, 156, 192, 0.3)
+    }
+
+    .ci.done .ct {
+        opacity: 0.45
+    }/* ───── mini checklist (mobility) ───── */
+    .mgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 28px
+    }
+
+    .mc {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 9px 2px;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 8px;
+        transition: background .15s
+    }
+
+    .mc:hover {
+        background: rgba(255, 255, 255, 0.02)
+    }
+
+    .mb {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: 2px solid #36302a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background .25s, border-color .25s;
+        color: var(--bg)
+    }
+
+    .mb svg {
+        width: 12px;
+        height: 12px
+    }
+
+    .mb path {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        transition: stroke-dashoffset .3s ease .05s
+    }
+
+    .mc:hover .mb {
+        border-color: var(--ember-dim)
+    }
+
+    .mc.done .mb {
+        background: var(--sage);
+        border-color: var(--sage);
+        animation: pop .35s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .mc.done .mb path {
+        stroke-dashoffset: 0
+    }
+
+    .m2 {
+        font-size: 15px;
+        color: var(--dim);
+        line-height: 1.45;
+        transition: color .25s
+    }
+
+    .mc.done .m2 {
+        color: var(--muted);
+        text-decoration: line-through;
+        text-decoration-color: rgba(127, 176, 105, 0.5)
+    }/* ───── tables ───── */
     .tw {
         border: 1px solid var(--border);
-        border-radius: 12px;
+        border-radius: 8px;
         overflow: hidden;
-        margin-bottom: 16px
+        margin-bottom: 18px;
+        background: var(--card-bot)
     }
 
     table {
@@ -340,136 +775,148 @@
     }
 
     thead th {
-        background: var(--surface2);
-        font-size: 11px;
-        letter-spacing: 1.5px;
+        background: var(--surface);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--muted);
-        padding: 14px 16px;
+        padding: 13px 16px;
         text-align: left;
-        font-weight: 500;
+        font-weight: 600;
         border-bottom: 1px solid var(--border)
     }
 
     tbody td {
-        padding: 14px 16px;
-        font-size: 15px;
-        border-bottom: 1px solid var(--border);
+        padding: 13px 16px;
+        font-size: 14.5px;
+        border-bottom: 1px solid #201b17;
         vertical-align: top;
-        color: var(--text)
+        color: var(--text);
+        line-height: 1.5
     }
 
     tbody tr:last-child td {
         border-bottom: none
     }
 
-    tbody tr:nth-child(even) {
-        background: var(--surface)
+    tbody tr {
+        transition: background .15s
+    }
+
+    tbody tr:hover {
+        background: rgba(255, 255, 255, 0.018)
+    }
+
+    td.m {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--dim);
+        white-space: nowrap
+    }
+
+    td.now {
+        color: var(--sage);
+        font-weight: 600
+    }
+
+    td.test {
+        color: var(--blue);
+        font-weight: 600
     }
 
     td a {
-        color: var(--accent);
+        color: var(--ember);
         text-decoration: none;
-        font-size: 14px;
-        font-weight: 500
+        font-family: var(--mono);
+        font-size: 12px
     }
 
     td a:hover {
         text-decoration: underline
-    }
-
-    .mc {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 10px 0;
-        cursor: pointer;
-        user-select: none
-    }
-
-    .mb {
-        width: 24px;
-        height: 24px;
-        border-radius: 6px;
-        border: 2px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--green);
-        font-size: 13px;
-        font-weight: 700;
-        flex-shrink: 0;
-        transition: all 0.2s
-    }
-
-    .mc.done .mb {
-        border-color: var(--green);
-        background: rgba(106, 172, 106, 0.16)
-    }
-
-    .m2 {
-        font-size: 15px;
-        color: var(--dim);
-        transition: color 0.2s;
-        line-height: 1.4
-    }
-
-    .mc.done .m2 {
-        color: var(--green)
-    }
-
-    .mw {
-        color: var(--red);
-        font-weight: 600;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px
-    }
-
+    }/* ───── gates ───── */
     .gate {
         border: 1px solid var(--border);
-        border-radius: 12px;
+        border-radius: 8px;
         overflow: hidden;
-        margin-bottom: 16px
+        margin-bottom: 14px;
+        background: var(--card-bot)
     }
 
     .gate.cleared {
-        border-color: var(--green-border);
-        opacity: 0.65
+        border-color: rgba(127, 176, 105, 0.18);
+        opacity: 0.6;
+        transition: opacity .25s
+    }
+
+    .gate.cleared:hover {
+        opacity: 1
     }
 
     .gh {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 18px 20px;
+        gap: 12px;
+        padding: 16px 20px;
         background: var(--surface);
         border-bottom: 1px solid var(--border)
     }
 
     .gate.cleared .gh {
-        background: var(--green-bg)
+        background: var(--sage-bg)
     }
 
     .gn {
-        font-weight: 700;
+        font-family: var(--display);
+        font-weight: 400;
         font-size: 16px;
-        color: var(--white)
+        color: var(--text);
+        letter-spacing: 0.8px;
+        text-transform: uppercase
     }
 
     .gate.cleared .gn {
-        color: var(--green)
+        color: var(--sage)
     }
 
-    .g2 {
-        font-size: 12px;
+    .gpill {
+        font-family: var(--mono);
+        font-size: 10px;
         font-weight: 600;
-        color: var(--accent);
-        letter-spacing: 1.5px
+        letter-spacing: 1.8px;
+        padding: 5px 11px;
+        border-radius: 3px;
+        white-space: nowrap
     }
 
-    .gate.cleared .g2 {
-        color: var(--green)
+    .gpill.ok {
+        color: var(--sage);
+        border: 1px solid var(--sage-border);
+        background: var(--sage-bg)
+    }
+
+    @keyframes halo {
+        0%, 100% {
+            box-shadow:0 0 0 0 rgba(255, 111, 46, 0.3)
+        }
+
+        50% {
+            box-shadow: 0 0 0 7px rgba(255, 111, 46, 0)
+        }
+    }
+
+    .gpill.next {
+        color: var(--ember);
+        border: 1px solid var(--ember-line);
+        background: var(--ember-soft);
+        animation: halo 2.4s ease-in-out infinite
+    }
+
+    .gpill.later {
+        color: var(--muted);
+        border: 1px solid var(--border);
+        background: transparent
     }
 
     .gb {
@@ -477,54 +924,56 @@
     }
 
     .gt2 {
-        font-size: 16px;
+        font-size: 15.5px;
         color: var(--text);
         margin-bottom: 12px;
         font-weight: 500;
-        line-height: 1.5
+        line-height: 1.55
     }
 
     .gt2 span {
-        font-size: 12px;
-        color: var(--accent-dim);
-        margin-right: 6px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--ember-dim);
+        margin-right: 8px;
         text-transform: uppercase;
-        letter-spacing: 1px
+        letter-spacing: 1.8px
     }
 
     .gl {
-        font-size: 15px;
+        font-size: 14.5px;
         color: var(--dim);
-        padding: 4px 0 4px 18px;
+        padding: 4px 0 4px 20px;
         position: relative;
-        line-height: 1.5
+        line-height: 1.55
     }
 
     .gl::before {
         content: '→';
         position: absolute;
         left: 0;
-        color: var(--accent-dim)
-    }
-
+        color: var(--ember-dim);
+        font-family: var(--mono)
+    }/* ───── timeline ───── */
     .tl {
         position: relative;
-        padding-left: 30px
+        padding-left: 32px;
+        margin-top: 6px
     }
 
     .tl::before {
         content: '';
         position: absolute;
         left: 8px;
-        top: 8px;
-        bottom: 8px;
+        top: 10px;
+        bottom: 10px;
         width: 1px;
-        background: var(--border)
+        background: linear-gradient(180deg, var(--sage-dim), var(--border) 55%)
     }
 
     .ti {
         position: relative;
-        padding-bottom: 24px
+        padding-bottom: 26px
     }
 
     .ti:last-child {
@@ -534,110 +983,141 @@
     .ti::before {
         content: '';
         position: absolute;
-        left: -25px;
-        top: 6px;
-        width: 9px;
-        height: 9px;
+        left: -29px;
+        top: 5px;
+        width: 11px;
+        height: 11px;
         border-radius: 50%;
-        background: var(--accent-dim);
+        background: var(--border-h);
         border: 2px solid var(--bg)
     }
 
     .ti.cleared::before {
-        background: var(--green)
+        background: var(--sage)
     }
 
     .ti.current::before {
-        background: var(--accent);
-        box-shadow: 0 0 12px rgba(255, 106, 31, 0.6)
+        background: var(--ember);
+        animation: halo 2.4s ease-in-out infinite
     }
 
     .t3 {
-        font-size: 12px;
+        font-family: var(--mono);
+        font-size: 10.5px;
         font-weight: 600;
-        color: var(--accent-dim);
-        letter-spacing: 1.5px;
+        color: var(--ember-dim);
+        letter-spacing: 2px;
         text-transform: uppercase
     }
 
+    .ti.cleared .t3 {
+        color: var(--sage-dim)
+    }
+
     .t4 {
+        font-family: var(--display);
         font-size: 16px;
         color: var(--text);
-        font-weight: 600;
-        margin: 3px 0
+        font-weight: 400;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        margin: 4px 0 3px
     }
 
     .t5 {
-        font-size: 15px;
-        color: var(--dim)
-    }
-
+        font-size: 14.5px;
+        color: var(--dim);
+        line-height: 1.5
+    }/* ───── biology notes ───── */
     .bio {
-        margin-bottom: 20px;
-        padding: 14px 18px;
-        border-left: 3px solid var(--border);
-        border-radius: 0 10px 10px 0;
-        background: var(--surface)
-    }
-
-    .bio.warn {
-        border-left-color: var(--red)
+        margin-bottom: 12px;
+        padding: 16px 20px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--card-bot)
     }
 
     .bt {
-        font-weight: 700;
-        font-size: 14px;
-        color: var(--accent);
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 10.5px;
+        color: var(--ember);
         text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 8px
+        letter-spacing: 2px;
+        margin-bottom: 9px
+    }
+
+    .bio.warn {
+        border-color: rgba(196, 96, 74, 0.3)
     }
 
     .bio.warn .bt {
-        color: var(--red)
+        color: var(--clay)
     }
 
     .bio p {
-        font-size: 15px;
+        font-size: 14.5px;
         color: var(--dim);
-        line-height: 1.7
-    }
-
+        line-height: 1.75
+    }/* ───── info card ───── */
     .ic {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 18px 22px;
+        border-radius: 8px;
+        padding: 17px 20px;
         margin-bottom: 12px
     }
 
     .i2 {
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--white);
-        margin-bottom: 5px
+        font-family: var(--sans);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 4px
     }
 
     .i3 {
-        font-size: 15px;
+        font-size: 14.5px;
         color: var(--dim);
         line-height: 1.6
     }
 
+    .iglyph {
+        flex-shrink: 0;
+        width: 34px;
+        height: 34px;
+        border-radius: 6px;
+        background: var(--ember-soft);
+        border: 1px solid var(--ember-line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        margin-top: 2px
+    }
+
     .rr {
         text-align: center;
-        margin-top: 24px
+        margin-top: 28px
     }
 
     .bg {
         background: transparent;
         border: 1px solid var(--border);
-        border-radius: 9px;
-        padding: 12px 24px;
+        border-radius: 4px;
+        padding: 10px 22px;
         color: var(--muted);
-        font-size: 13px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
         cursor: pointer;
-        transition: all 0.2s
+        transition: border-color .2s, color .2s
     }
 
     .bg:hover {
@@ -647,51 +1127,62 @@
 
     .fl {
         text-align: center;
-        margin-top: 32px;
-        padding-top: 20px;
+        margin-top: 36px;
+        padding-top: 22px;
         border-top: 1px solid var(--border);
-        font-size: 11px;
+        font-family: var(--mono);
+        font-size: 10px;
         font-weight: 600;
         text-transform: uppercase;
         color: var(--muted);
-        letter-spacing: 1px
-    }
-
-    @media (max-width: 560px) {
-        .nav {
-            padding: 16px 16px
-        }
-
+        letter-spacing: 2.5px
+    }/* ───── responsive ───── */
+    @media (max-width: 600px) {
         .ni {
             flex-direction: column;
             align-items: stretch;
-            gap: 16px
+            gap: 12px;
+            padding: 13px 16px
         }
 
-        .nt {
-            font-size: 25px;
-            line-height: 1.1
-        }
-
-        .ns {
-            margin-top: 4px
+        .wm {
+            justify-content: center
         }
 
         .tabs {
-            width: 100%;
-            gap: 6px
+            width: 100%
         }
 
         .tab {
             flex: 1;
             text-align: center;
-            padding: 11px 6px;
-            font-size: 12px;
-            letter-spacing: 1px
+            padding: 9px 4px
         }
 
         .co {
-            padding: 20px 16px 100px
+            padding: 22px 16px 100px
+        }
+
+        .hero {
+            gap: 18px;
+            margin-bottom: 22px
+        }
+
+        .ring-wrap {
+            width: 76px;
+            height: 76px
+        }
+
+        .ring-num {
+            font-size: 19px
+        }
+
+        .hero-h {
+            font-size: 34px
+        }
+
+        .phase-mark {
+            display: none
         }
 
         .week {
@@ -699,41 +1190,63 @@
         }
 
         .day {
-            padding: 10px 2px;
-            border-radius: 9px
+            padding: 9px 2px 8px;
+            border-radius: 6px
         }
 
         .day .dl {
-            font-size: 11px;
-            margin-bottom: 5px
+            font-size: 9.5px;
+            margin-bottom: 4px;
+            letter-spacing: 1px
         }
 
         .day .dw {
-            font-size: 11px
+            font-size: 10.5px
         }
 
-        .cn {
-            font-size: 16px
+        .mgrid {
+            grid-template-columns: 1fr
         }
 
         .ci {
-            padding: 15px 16px;
+            padding: 14px 15px;
             gap: 13px
+        }
+
+        .cn {
+            font-size: 14px
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation: none !important;
+            transition: none !important
         }
     }
     </style>
 </head>
 <body>
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff5a1f"/>
+                <stop offset="1" stop-color="#ffa14d"/>
+            </linearGradient>
+        </defs>
+    </svg>
     <div class="nav">
         <div class="ni">
-            <div>
-                <div class="nt">Return to Training</div>
-                <div class="ns" id="ns"></div>
+            <div class="wm">
+                <svg width="15" height="15" viewBox="0 0 32 32">
+                    <path d="M6 22 L16 10 L26 22" fill="none" stroke="#ff6f2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                RETURN TO TRAINING
             </div>
             <div class="tabs">
-                <button class="tab active" onclick="st('today')" id="tab-today">TODAY</button>
-                <button class="tab" onclick="st('mobility')" id="tab-mobility">MOBILITY</button>
-                <button class="tab" onclick="st('reference')" id="tab-reference">REF</button>
+                <button class="tab active" onclick="st('today')" id="tab-today">Today</button>
+                <button class="tab" onclick="st('mobility')" id="tab-mobility">Mobility</button>
+                <button class="tab" onclick="st('reference')" id="tab-reference">Ref</button>
             </div>
         </div>
     </div>
@@ -1018,6 +1531,14 @@
     ];
     // CURRENT PHASE — bump to 5 when Gate 3 clears. Activates Phase-5 work (fast calf raises, stick landings) in TODAY.
     const PHASE = 4;
+    const ROMAN = {
+        1: "I",
+        2: "II",
+        3: "III",
+        4: "IV",
+        5: "V",
+        6: "VI"
+    };
     // 7-day rotation: Sun=Rest(fast begins), Mon=Pull, Tue=Cardio(fasted), Wed=Push, Thu=Pull, Fri=Cardio, Sat=Push
     const ROT = {
         0: "off",
@@ -1044,9 +1565,15 @@
         off: "Off"
     };
     const DY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const DYF = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const MN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     function tk() {
         const d = new Date();
         return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+    }
+    function fmtDate() {
+        const d = new Date();
+        return `${MN[d.getMonth()]} ${d.getDate()}`
     }
     let S = {
         tab: "today",
@@ -1054,6 +1581,12 @@
         ck: {},
         mk: {}
     };
+    let CUR = {
+        work: [],
+        daily: [],
+        mob: null
+    };
+    const CHECK = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>`;
     function ld() {
         try {
             S.ck = JSON.parse(localStorage.getItem("rtc7") || "{}")
@@ -1071,18 +1604,30 @@
         if (!S.ck[k])
             S.ck[k] = [];
         const c = S.ck[k];
-        S.ck[k] = c.includes(id) ? c.filter(x => x !== id) : [...c, id];
+        const on = !c.includes(id);
+        S.ck[k] = on ? [...c, id] : c.filter(x => x !== id);
         sv();
-        rn()
+        const el = document.querySelector(`.ci[data-id="${id}"]`);
+        if (el) {
+            el.classList.toggle('done', on);
+            upd()
+        } else
+            rn()
     }
     function tm(id) {
         const k = tk();
         if (!S.mk[k])
             S.mk[k] = [];
         const c = S.mk[k];
-        S.mk[k] = c.includes(id) ? c.filter(x => x !== id) : [...c, id];
+        const on = !c.includes(id);
+        S.mk[k] = on ? [...c, id] : c.filter(x => x !== id);
         sv();
-        rn()
+        const el = document.querySelector(`.mc[data-id="${id}"]`);
+        if (el) {
+            el.classList.toggle('done', on);
+            upd()
+        } else
+            rn()
     }
     function selDay(d) {
         S.sel = d;
@@ -1101,153 +1646,249 @@
         sv();
         rn()
     }
-    function ci(i, ck, sl) {
-        const d = ck.includes(i.id);
-        const lk = sl && i.l ? ` <a href="${i.l}" target="_blank" onclick="event.stopPropagation()">▶ video</a>` : '';
-        return `<div class="ci ${d ? 'done' : ''}" onclick="tg('${i.id}')"><div class="cb">${d ? '✓' : ''}</div><div style="flex:1"><div class="cn">${i.n}${lk}</div><div class="cr">${i.r}</div></div>${i.t ? `<span class="ct">${i.t}</span>` : ''}</div>`
+    function sh(label, group, cls) {
+        return `<div class="sh ${cls || ''}" ${group ? `id="sh-${group}"` : ''}><span class="lab">${label}</span><span class="rule"></span>${group ? `<span class="cnt" id="pc-${group}"></span>` : ''}</div>`
+    }
+    function ci(i, ck, opts={}) {
+        const d = ck.includes(i.id),
+            ro = opts.ro;
+        const lk = i.l ? ` <a class="vl" href="${i.l}" target="_blank" onclick="event.stopPropagation()">▶ video</a>` : '';
+        const chip = i.t ? `<span class="ct ${opts.blue ? 'blue' : ''}">${i.t}</span>` : '';
+        return `<div class="ci ${d ? 'done' : ''} ${ro ? 'ro' : ''}" data-id="${i.id}"${ro ? '' : ` onclick="tg('${i.id}')"`}><div class="cb">${CHECK}</div><div class="cm"><div class="cn"><span class="nm">${i.n}</span>${lk}</div><div class="cr">${i.r}</div></div>${chip}</div>`
     }
     function mi(i, ck) {
         const d = ck.includes(i.id);
-        const w = i.w ? ` <span class="mw">${i.w}</span>` : '';
-        return `<div class="mc ${d ? 'done' : ''}" onclick="tm('${i.id}')"><div class="mb">${d ? '✓' : ''}</div><div class="m2">${i.t}${w}</div></div>`
+        return `<div class="mc ${d ? 'done' : ''}" data-id="${i.id}" onclick="tm('${i.id}')"><div class="mb">${CHECK}</div><div class="m2">${i.t}</div></div>`
+    }
+    function dayLists(wo, isTraining) {
+        let wi = [];
+        if (wo === "pull")
+            wi = PULL;
+        else if (wo === "push")
+            wi = PUSH;
+        else if (wo === "cardio")
+            wi = CARDIO;
+        wi = wi.filter(w => !(w.ph && w.ph > PHASE));
+        const df = D.filter(d => !(isTraining && d.skip === "training"));
+        return {
+            wi,
+            df
+        }
+    }
+    function upd() {
+        const k = tk(),
+            ck = S.ck[k] || [],
+            mk = S.mk[k] || [];
+        if (S.tab === "today") {
+            const grp = (g, ids) => {
+                if (!ids.length)
+                    return [0, 0];
+                const dn = ids.filter(x => ck.includes(x)).length,
+                    p = Math.round(dn / ids.length * 100);
+                const pf = document.getElementById('pf-' + g);
+                if (pf) {
+                    pf.style.width = p + '%';
+                    pf.classList.toggle('full', p === 100)
+                }
+                const pc = document.getElementById('pc-' + g);
+                if (pc)
+                    pc.textContent = `${dn}/${ids.length}`;
+                const e = document.getElementById('sh-' + g);
+                if (e)
+                    e.classList.toggle('done', p === 100 && ids.length > 0);
+                return [dn, ids.length]
+            };
+            const [wd, wt] = grp('work', CUR.work),
+                [dd, dt] = grp('daily', CUR.daily);
+            const rf = document.getElementById('ringFill'),
+                rNum = document.getElementById('ringNum'),
+                hero = document.getElementById('hero');
+            if (rf && rNum) {
+                const tot = wt + dt,
+                    dn = wd + dd,
+                    p = tot ? Math.round(dn / tot * 100) : 0;
+                rf.style.strokeDashoffset = 100 - p;
+                rf.classList.toggle('full', p === 100 && tot > 0);
+                rNum.innerHTML = `${dn}<span>/${tot}</span>`;
+                if (hero)
+                    hero.classList.toggle('complete', p === 100 && tot > 0)
+            }
+        } else if (S.tab === "mobility" && CUR.mob) {
+            for (const [g, ids] of Object.entries(CUR.mob)) {
+                const dn = ids.filter(x => mk.includes(x)).length;
+                const pc = document.getElementById('pc-' + g);
+                if (pc)
+                    pc.textContent = `${dn}/${ids.length}`;
+                const e = document.getElementById('sh-' + g);
+                if (e)
+                    e.classList.toggle('done', dn === ids.length && ids.length > 0)
+            }
+        }
     }
     function rn() {
         const k = tk(),
             todayDow = new Date().getDay(),
             ck = S.ck[k] || [],
             mk = S.mk[k] || [];
-        document.getElementById("ns").textContent = `${DY[todayDow]} · ${k} · Phase ${PHASE}`;
         const a = document.getElementById("app");
+        CUR = {
+            work: [],
+            daily: [],
+            mob: null
+        };
         if (S.tab === "today") {
-            let h = "";
-            // WEEK ROTATION STRIP
-            h += `<div class="week">`;
-            [1, 2, 3, 4, 5, 6, 0].forEach(dow => {
-                const wo = ROT[dow];
-                const isToday = dow === todayDow;
-                const isSel = dow === S.sel;
-                h += `<div class="day ${wo} ${isSel ? 'sel' : ''}" onclick="selDay(${dow})">${isToday ? '<div class="today-dot"></div>' : ''}<div class="dl">${DABBR[dow]}</div><div class="dw">${WLABEL[wo]}</div></div>`;
-            });
-            h += `</div>`;
-
+            const preview = S.sel !== todayDow;
             const wo = ROT[S.sel];
             const isTraining = wo === "pull" || wo === "push";
-            const isPull = wo === "pull";
-            let wi = [],
-                wl = "",
+            let wl = "",
                 wn = "";
             if (wo === "pull") {
-                wi = PULL;
-                wl = "Pull + Calf Raises";
+                wl = "Pull + Calves";
                 wn = "Straight sets, full rest. Hang pause replaces dead hangs. Consistent reps across all 4 sets → add weight. Calf raises: when 3×15 is easy, hold a plate."
             }
             else if (wo === "push") {
-                wi = PUSH;
                 wl = "Push + BSS";
                 wn = "Straight sets, full rest 90-120s. Top of rep range for 2 consecutive sessions → add 5 lbs. BSS: bodyweight first, then hold plates."
             }
             else if (wo === "cardio") {
-                wi = CARDIO;
                 wl = "Cardio + Mobility";
                 wn = "Sprints on Friday — Tuesday is the fasted recovery day (bike/swim + mobility only). Volume before intensity. Then aerobic + full mobility."
             }
-            wi = wi.filter(w => !(w.ph && w.ph > PHASE));
-
-            // WORKOUT FIRST
-            if (isTraining || wo === "cardio") {
-                const wc = wi.length,
-                    wd = wi.filter(w => ck.includes(w.id)).length;
-                const wp = wc ? Math.round((wd / wc) * 100) : 0;
-                h += `<div class="sl first">${wl}</div>`;
-                h += `<div class="sn">${wn}</div>`;
-                h += `<div class="pb"><div class="pf" style="width:${wp}%;background:${wp === 100 ? 'var(--green)' : 'var(--accent)'}"></div></div>`;
-                h += wi.map(w => ci(w, ck, true)).join("");
-            } else {
-                h += `<div class="sl first">Off Day</div>`;
-                h += `<div class="ic"><div class="i2">Rest</div><div class="i3">Daily block + 30 min walk. That's it. Full recovery.</div></div>`;
+            else {
+                wl = "Rest Day";
+                wn = ""
             }
-
-            // DAILY BLOCK BELOW
-            const df = D.filter(d => !(isTraining && d.skip === "training"));
-            const dd = df.filter(d => ck.includes(d.id)).length;
-            const dp = Math.round((dd / df.length) * 100);
-            h += `<div class="sl">Daily Block</div>`;
-            h += `<div class="sn">Run the full list twice — one set of each per pass.</div>`;
-            if (isTraining)
-                h += `<div class="sn">Dead hangs skipped — ${isPull ? 'hang pause on pull-up reps' : 'hanging leg raises'} covers it.</div>`;
-            h += `<div class="pb"><div class="pf" style="width:${dp}%;background:${dp === 100 ? 'var(--green)' : 'var(--accent)'}"></div></div>`;
-            h += df.map(d => ci(d, ck, true)).join("");
-
+            const {wi, df} = dayLists(wo, isTraining);
+            if (!preview) {
+                CUR.work = wi.map(w => w.id);
+                CUR.daily = df.map(d => d.id)
+            }
+            let h = "";
+            // HERO
+            if (!preview) {
+                h += `<header class="hero" id="hero">
+                <div class="ring-wrap"><svg width="96" height="96" viewBox="0 0 96 96"><circle class="ring-track" cx="48" cy="48" r="42"/><circle class="ring-fill" id="ringFill" cx="48" cy="48" r="42" pathLength="100" transform="rotate(-90 48 48)"/></svg><div class="ring-num" id="ringNum"></div></div>
+                <div class="hero-tx"><div class="eyebrow">${DYF[todayDow]}<span class="sep">·</span><span class="dimmed">${fmtDate()}</span><span class="sep">·</span><span class="dimmed">Phase ${ROMAN[PHASE] || PHASE}</span></div>
+                <h1 class="hero-h">${wl}</h1>
+                <div class="hero-done">✓&nbsp; SESSION COMPLETE</div></div>
+                <div class="phase-mark">${ROMAN[PHASE] || PHASE}</div></header>`;
+            } else {
+                h += `<header class="hero">
+                <div class="hero-tx"><div class="eyebrow"><span class="dimmed">Preview</span><span class="sep">·</span>${DYF[S.sel]}</div>
+                <h1 class="hero-h">${wl}</h1>
+                <button class="back" onclick="selDay(${todayDow})">← Back to today</button></div>
+                <div class="phase-mark">${ROMAN[PHASE] || PHASE}</div></header>`;
+            }
+            // WEEK STRIP
+            h += `<div class="week">`;
+            [1, 2, 3, 4, 5, 6, 0].forEach(dow => {
+                const w = ROT[dow],
+                    isToday = dow === todayDow,
+                    isSel = dow === S.sel;
+                h += `<div class="day ${w} ${isSel ? 'sel' : ''}" onclick="selDay(${dow})">${isToday ? '<div class="today-dot"></div>' : ''}<div class="dl">${DABBR[dow]}</div><div class="dw">${WLABEL[w]}</div></div>`
+            });
+            h += `</div>`;
+            // WORKOUT
+            if (wi.length) {
+                h += sh(wl, preview ? null : 'work', 'first');
+                if (wn)
+                    h += `<div class="note">${wn}</div>`;
+                if (!preview)
+                    h += `<div class="pb"><div class="pf" id="pf-work"></div></div>`;
+                h += wi.map(w => ci(w, ck, {
+                    ro: preview,
+                    blue: wo === "cardio"
+                })).join("");
+            } else {
+                h += sh("Off Day", null, 'first');
+                h += `<div class="ic"><div class="iglyph">☾</div><div><div class="i2">Rest</div><div class="i3">Daily block + 30 min walk. That's it. Full recovery.</div></div></div>`;
+            }
+            // DAILY BLOCK
+            h += sh("Daily Block", preview ? null : 'daily');
+            h += `<div class="note">Run the full list twice — one set of each per pass.${isTraining ? ` Dead hangs skipped — ${wo === "pull" ? 'hang pause on pull-up reps' : 'hanging leg raises'} covers it.` : ''}</div>`;
+            if (!preview)
+                h += `<div class="pb"><div class="pf" id="pf-daily"></div></div>`;
+            h += df.map(d => ci(d, ck, {
+                ro: preview
+            })).join("");
             // WALKING
-            h += `<div style="margin-top:24px"><div class="ic"><div class="i2">Walking — Daily</div><div class="i3">30 min every day. Include backward walking + sprint warm-up drills. Baseline movement + leanness tool.</div></div></div>`;
-            h += `<div class="rr"><button class="bg" onclick="rt()">Reset Today</button></div>`;
+            h += `<div style="margin-top:26px"><div class="ic"><div class="iglyph">↟</div><div><div class="i2">Walking — Daily</div><div class="i3">30 min every day. Include backward walking + sprint warm-up drills. Baseline movement + leanness tool.</div></div></div></div>`;
+            if (!preview)
+                h += `<div class="rr"><button class="bg" onclick="rt()">Reset Today</button></div>`;
             a.innerHTML = h;
         } else if (S.tab === "mobility") {
+            CUR.mob = {
+                roll: MR.map(m => m.id),
+                stretch: MS.map(m => m.id),
+                opt: MO.map(m => m.id)
+            };
             let h = "";
-            h += `<div class="sl first">Mobility Routine</div>`;
-            h += `<div class="sn">2-3× per week on cardio days. Warm-up via 30 min cardio.</div>`;
-            h += `<div class="sl">Roll / Massage Gun</div>`;
-            h += MR.map(m => mi(m, mk)).join("");
-            h += `<div class="sl">Stretch</div>`;
-            h += MS.map(m => mi(m, mk)).join("");
-            h += `<div class="sl">Optional</div>`;
-            h += MO.map(m => mi(m, mk)).join("");
-            h += `<div class="sl">Therapist Nerve Flossing</div>`;
-            h += `<div class="sn">On cardio days. 2-3 sets of 10 smooth oscillations. No sustained holds.</div>`;
+            h += `<header class="hero"><div class="hero-tx"><div class="eyebrow">2-3× per week<span class="sep">·</span><span class="dimmed">Cardio days</span></div>
+            <h1 class="hero-h">Mobility</h1></div></header>`;
+            h += `<div class="note">Warm-up via 30 min cardio first. Work top to bottom.</div>`;
+            h += sh("Roll / Massage Gun", 'roll');
+            h += `<div class="mgrid">${MR.map(m => mi(m, mk)).join("")}</div>`;
+            h += sh("Stretch", 'stretch');
+            h += `<div class="mgrid">${MS.map(m => mi(m, mk)).join("")}</div>`;
+            h += sh("Optional", 'opt', 'quiet');
+            h += `<div class="mgrid">${MO.map(m => mi(m, mk)).join("")}</div>`;
+            h += sh("Therapist Nerve Flossing");
+            h += `<div class="note">On cardio days. 2-3 sets of 10 smooth oscillations. No sustained holds.</div>`;
             h += `<div class="tw"><table><thead><tr><th>Exercise</th><th>Notes</th><th>Video</th></tr></thead><tbody>`;
-            h += TH.map(t => `<tr><td style="font-weight:500;color:var(--white)">${t.n}</td><td style="color:var(--dim)">${t.no}</td><td><a href="${t.l}" target="_blank">▶ Watch</a></td></tr>`).join("");
+            h += TH.map(t => `<tr><td style="font-weight:500">${t.n}</td><td style="color:var(--dim)">${t.no}</td><td><a href="${t.l}" target="_blank">▶ Watch</a></td></tr>`).join("");
             h += `</tbody></table></div>`;
-            h += `<div class="sn">Popliteus release + chin tucks are in the daily block. Pectineus + quadratus femoris dropped.</div>`;
+            h += `<div class="note">Popliteus release + chin tucks are in the daily block. Pectineus + quadratus femoris dropped.</div>`;
             h += `<div class="rr"><button class="bg" onclick="rt()">Reset Checks</button></div>`;
             a.innerHTML = h;
         } else {
             a.innerHTML = `
-            <div class="sl first">Phase Gates</div>
-            <div class="gate cleared"><div class="gh"><span class="gn">Gate 1 — Phase 3</span><span class="g2">✓ CLEARED</span></div><div class="gb"><div class="gt2"><span>Test</span> 25 continuous pain-free double-leg heel raises.</div></div></div>
-            <div class="gate cleared"><div class="gh"><span class="gn">Gate 2 — Phase 4</span><span class="g2">✓ CLEARED WK 8</span></div><div class="gb"><div class="gt2"><span>Test</span> 3 × 15 single-leg raises pain-free. Symmetrical dorsiflexion ROM.</div><div class="gl">Deficit calf raises (slow, 3s/3s) active on pull days — structural base.</div><div class="gl">BSS active on push days.</div><div class="gl">Sprint run-throughs begun — 50-60% on turf.</div><div class="gl">Bridge work (fast raises, stick landings) prepped but held for Phase 5 — current week steady.</div></div></div>
-            <div class="gate"><div class="gh"><span class="gn">Gate 3 — Phase 5</span><span class="g2">NEXT TARGET</span></div><div class="gb"><div class="gt2"><span>Test</span> 25+ single-leg raises matching other side. Hop LSI ≥90%. ≥90% plantarflexion LSI. ≥2× BW single-leg raise. 10-20 single-leg hops in place, pain-free.</div><div class="gl">Fast calf raises — 3×10 light, crisp, before heavy raises on pull days. Metronome ~132bpm. Speed-of-contraction bridge. Add this first.</div><div class="gl">Stick landings — Friday, fresh, before sprints. 2-3×5, soft &amp; silent, hold 2-3s. Absorption before reactive. Add second, once fast raises are clean.</div><div class="gl">Pogos — bilateral, low, stiff ankle, toes up. Foundational sprint plyo, most calf-direct → waits for the full rep count above.</div><div class="gl">Low horizontal bounds — broad jump + stick → short controlled bounds. Distance before speed.</div><div class="gl">Box jump CHECK (test, not training): 5 bilateral onto ~30cm + 5 unilateral onto 15-20cm, &lt;10% asymmetry. Confirms reactive readiness.</div><div class="gl">Right-side hip/glute hinge (RDLs, step-downs) 2-3×/wk — proximal ≈30% of plantarflexion force; addresses the R-soleus overload chain.</div><div class="gl">Sprint: progress 80% → 95%, each pain-free.</div><div class="gl">Jogging unlocks here — after sprint milestones.</div></div></div>
-            <div class="gate"><div class="gh"><span class="gn">Gate 4 — Full Return</span><span class="g2">WK 20-24</span></div><div class="gb"><div class="gt2"><span>Test</span> Hop LSI ≥95%. Pain-free max sprint. One week no symptoms.</div><div class="gl">Single-leg hops → continuous → triple hops. Reactive, sport-specific top of the ladder.</div><div class="gl">True max sprint — full send. Block starts resume LAST.</div><div class="gl">1 week full training per 2 weeks missed.</div></div></div>
-
-            <div class="sl">Sprint Return Progression</div>
-            <div class="sn">Increase volume first (more reps), then intensity (faster). Never both in the same session. Check 48hr response each time.</div>
+            <header class="hero"><div class="hero-tx"><div class="eyebrow">Program<span class="sep">·</span><span class="dimmed">Phase ${ROMAN[PHASE] || PHASE} active</span></div>
+            <h1 class="hero-h">Reference</h1></div><div class="phase-mark">${ROMAN[PHASE] || PHASE}</div></header>
+            ${sh("Phase Gates", null, 'first')}
+            <div class="gate cleared"><div class="gh"><span class="gn">Gate 1 — Phase 3</span><span class="gpill ok">✓ Cleared</span></div><div class="gb"><div class="gt2"><span>Test</span> 25 continuous pain-free double-leg heel raises.</div></div></div>
+            <div class="gate cleared"><div class="gh"><span class="gn">Gate 2 — Phase 4</span><span class="gpill ok">✓ Cleared · Wk 8</span></div><div class="gb"><div class="gt2"><span>Test</span> 3 × 15 single-leg raises pain-free. Symmetrical dorsiflexion ROM.</div><div class="gl">Deficit calf raises (slow, 3s/3s) active on pull days — structural base.</div><div class="gl">BSS active on push days.</div><div class="gl">Sprint run-throughs begun — 50-60% on turf.</div><div class="gl">Bridge work (fast raises, stick landings) prepped but held for Phase 5 — current week steady.</div></div></div>
+            <div class="gate"><div class="gh"><span class="gn">Gate 3 — Phase 5</span><span class="gpill next">Next Target</span></div><div class="gb"><div class="gt2"><span>Test</span> 25+ single-leg raises matching other side. Hop LSI ≥90%. ≥90% plantarflexion LSI. ≥2× BW single-leg raise. 10-20 single-leg hops in place, pain-free.</div><div class="gl">Fast calf raises — 3×10 light, crisp, before heavy raises on pull days. Metronome ~132bpm. Speed-of-contraction bridge. Add this first.</div><div class="gl">Stick landings — Friday, fresh, before sprints. 2-3×5, soft &amp; silent, hold 2-3s. Absorption before reactive. Add second, once fast raises are clean.</div><div class="gl">Pogos — bilateral, low, stiff ankle, toes up. Foundational sprint plyo, most calf-direct → waits for the full rep count above.</div><div class="gl">Low horizontal bounds — broad jump + stick → short controlled bounds. Distance before speed.</div><div class="gl">Box jump CHECK (test, not training): 5 bilateral onto ~30cm + 5 unilateral onto 15-20cm, &lt;10% asymmetry. Confirms reactive readiness.</div><div class="gl">Right-side hip/glute hinge (RDLs, step-downs) 2-3×/wk — proximal ≈30% of plantarflexion force; addresses the R-soleus overload chain.</div><div class="gl">Sprint: progress 80% → 95%, each pain-free.</div><div class="gl">Jogging unlocks here — after sprint milestones.</div></div></div>
+            <div class="gate"><div class="gh"><span class="gn">Gate 4 — Full Return</span><span class="gpill later">Wk 20-24</span></div><div class="gb"><div class="gt2"><span>Test</span> Hop LSI ≥95%. Pain-free max sprint. One week no symptoms.</div><div class="gl">Single-leg hops → continuous → triple hops. Reactive, sport-specific top of the ladder.</div><div class="gl">True max sprint — full send. Block starts resume LAST.</div><div class="gl">1 week full training per 2 weeks missed.</div></div></div>
+            ${sh("Sprint Return Progression")}
+            <div class="note">Increase volume first (more reps), then intensity (faster). Never both in the same session. Check 48hr response each time.</div>
             <div class="tw"><table><thead><tr><th>Stage</th><th>Reps × Distance</th><th>Effort</th><th>Notes</th></tr></thead><tbody>
-            <tr><td style="color:var(--green);font-weight:600">Now (wk 8-9)</td><td>3 × 50m</td><td>50-60%</td><td>2-3 more pain-free sessions</td></tr>
-            <tr><td>Weeks 9-10</td><td>4-5 × 50-60m</td><td>50-60%</td><td>Volume up, intensity same</td></tr>
-            <tr><td>Weeks 10-12</td><td>4-5 × 60m</td><td>60-70%</td><td>Intensity up</td></tr>
-            <tr><td>Weeks 12-14</td><td>4-5 × 60-80m</td><td>70-80%</td><td>Approaching Gate 3</td></tr>
+            <tr><td class="m now">Now (wk 8-9)</td><td class="m">3 × 50m</td><td class="m">50-60%</td><td style="color:var(--dim)">2-3 more pain-free sessions</td></tr>
+            <tr><td class="m">Weeks 9-10</td><td class="m">4-5 × 50-60m</td><td class="m">50-60%</td><td style="color:var(--dim)">Volume up, intensity same</td></tr>
+            <tr><td class="m">Weeks 10-12</td><td class="m">4-5 × 60m</td><td class="m">60-70%</td><td style="color:var(--dim)">Intensity up</td></tr>
+            <tr><td class="m">Weeks 12-14</td><td class="m">4-5 × 60-80m</td><td class="m">70-80%</td><td style="color:var(--dim)">Approaching Gate 3</td></tr>
             </tbody></table></div>
-
-            <div class="sl">Plyometric Progression</div>
-            <div class="sn">Earn the right to be reactive by first proving you can absorb. Count contacts not sets — start ~40-60 quality contacts, increase ≤10-20%/wk. Fresh, before lifts. 1-2×/wk, never back-to-back with sprint or weighted calf.</div>
+            ${sh("Plyometric Progression")}
+            <div class="note">Earn the right to be reactive by first proving you can absorb. Count contacts not sets — start ~40-60 quality contacts, increase ≤10-20%/wk. Fresh, before lifts. 1-2×/wk, never back-to-back with sprint or weighted calf.</div>
             <div class="tw"><table><thead><tr><th>Stage</th><th>Exercise</th><th>Gate</th><th>Notes</th></tr></thead><tbody>
-            <tr><td style="color:var(--green);font-weight:600">Base</td><td>Heavy deficit raises</td><td>Now</td><td>Slow 3s/3s — structural</td></tr>
-            <tr><td>Bridge</td><td>Fast calf raises</td><td>Gate 3</td><td>Light, crisp — speed of contraction</td></tr>
-            <tr><td>1</td><td>Stick landings</td><td>Gate 3</td><td>Absorption / eccentric brake</td></tr>
-            <tr><td>2</td><td>Pogos (bilateral)</td><td>Gate 3</td><td>Low, stiff ankle, toes up</td></tr>
-            <tr><td style="color:var(--cardio);font-weight:600">Test</td><td>Box jump check</td><td>Gate 3</td><td>Readiness test, not training</td></tr>
-            <tr><td>3</td><td>Low horizontal bounds</td><td>Gate 3</td><td>Distance before speed</td></tr>
-            <tr><td>4</td><td>Single-leg → triple hops</td><td>Gate 4</td><td>Reactive, sport-specific</td></tr>
+            <tr><td class="m now">Base</td><td>Heavy deficit raises</td><td class="m">Now</td><td style="color:var(--dim)">Slow 3s/3s — structural</td></tr>
+            <tr><td class="m">Bridge</td><td>Fast calf raises</td><td class="m">Gate 3</td><td style="color:var(--dim)">Light, crisp — speed of contraction</td></tr>
+            <tr><td class="m">1</td><td>Stick landings</td><td class="m">Gate 3</td><td style="color:var(--dim)">Absorption / eccentric brake</td></tr>
+            <tr><td class="m">2</td><td>Pogos (bilateral)</td><td class="m">Gate 3</td><td style="color:var(--dim)">Low, stiff ankle, toes up</td></tr>
+            <tr><td class="m test">Test</td><td>Box jump check</td><td class="m">Gate 3</td><td style="color:var(--dim)">Readiness test, not training</td></tr>
+            <tr><td class="m">3</td><td>Low horizontal bounds</td><td class="m">Gate 3</td><td style="color:var(--dim)">Distance before speed</td></tr>
+            <tr><td class="m">4</td><td>Single-leg → triple hops</td><td class="m">Gate 4</td><td style="color:var(--dim)">Reactive, sport-specific</td></tr>
             </tbody></table></div>
-
-            <div class="sl muted">Parked &amp; Cut</div>
-            <div class="gate"><div class="gb"><div class="gt2"><span>Parked till Gate 3</span> Reactive load on healed tissue, waits for the rep count.</div><div class="gl">Pogos, bounds, box-jump test — reactive calf demand.</div><div class="gl">Loaded hip hinge (RDLs), Nordics, single-leg RDLs — eccentric load routes through the calf.</div><div class="gt2" style="margin-top:14px"><span>Cut</span> Bad risk/reward or no sprint value.</div><div class="gl">Depth / drop jumps (shock method) — needs ≥95% LSI, tendon-lag tail bites hardest.</div><div class="gl">Tuck jumps — no value over pogos + bounds.</div><div class="gl">Box jumps as training — keep only as the Gate 3 test.</div></div></div>
-
-            <div class="sl">Timeline</div>
+            ${sh("Parked &amp; Cut", null, 'quiet')}
+            <div class="gate"><div class="gb"><div class="gt2"><span>Parked till Gate 3</span> Reactive load on healed tissue, waits for the rep count.</div><div class="gl">Pogos, bounds, box-jump test — reactive calf demand.</div><div class="gl">Loaded hip hinge (RDLs), Nordics, single-leg RDLs — eccentric load routes through the calf.</div><div class="gt2" style="margin-top:16px"><span>Cut</span> Bad risk/reward or no sprint value.</div><div class="gl">Depth / drop jumps (shock method) — needs ≥95% LSI, tendon-lag tail bites hardest.</div><div class="gl">Tuck jumps — no value over pogos + bounds.</div><div class="gl">Box jumps as training — keep only as the Gate 3 test.</div></div></div>
+            ${sh("Timeline")}
             <div class="tl">
-            <div class="ti cleared"><div class="t3">WK 5-6 · CLEARED</div><div class="t4">Gate 1 — Phase 3</div><div class="t5">Seated calf raises began.</div></div>
-            <div class="ti cleared"><div class="t3">WK 8 · CLEARED</div><div class="t4">Gate 2 — Phase 4</div><div class="t5">Deficit calf raises. BSS. Sprint run-throughs begun.</div></div>
-            <div class="ti current"><div class="t3">GATE 3 · TARGET</div><div class="t4">Phase 5 — Sprint + Plyo</div><div class="t5">Pogos, bounds, full sprint progression to 95%. Jogging unlocks after.</div></div>
-            <div class="ti"><div class="t3">WK 20-24 · SEP-OCT</div><div class="t4">Full Return</div><div class="t5">Max velocity. Block starts last. Arrive Hua Hin rebuilt.</div></div>
+            <div class="ti cleared"><div class="t3">Wk 5-6 · Cleared</div><div class="t4">Gate 1 — Phase 3</div><div class="t5">Seated calf raises began.</div></div>
+            <div class="ti cleared"><div class="t3">Wk 8 · Cleared</div><div class="t4">Gate 2 — Phase 4</div><div class="t5">Deficit calf raises. BSS. Sprint run-throughs begun.</div></div>
+            <div class="ti current"><div class="t3">Gate 3 · Target</div><div class="t4">Phase 5 — Sprint + Plyo</div><div class="t5">Pogos, bounds, full sprint progression to 95%. Jogging unlocks after.</div></div>
+            <div class="ti"><div class="t3">Wk 20-24 · Sep-Oct</div><div class="t4">Full Return</div><div class="t5">Max velocity. Block starts last. Arrive Hua Hin rebuilt.</div></div>
             </div>
-
-            <div class="sl">How the Tear Heals</div>
+            ${sh("How the Tear Heals")}
             <div class="bio"><div class="bt">Phase 1 — Destruction · Hours 0-48</div><p>Torn fibers retract. Hematoma forms scaffold. Neutrophils (hrs 1-24), macrophages (hrs 24-72) secrete growth factors activating satellite cells.</p></div>
             <div class="bio"><div class="bt">Phase 2 — Repair · Days 3-21</div><p>Satellite cells fuse into myotubes bridging the gap. Fibroblasts lay Type III collagen — weak, disorganized. Grade II gap too large to fully bridge; scar fills the rest. BPC-157 supports via angiogenesis. TB-500 promotes cell migration.</p></div>
             <div class="bio"><div class="bt">Phase 3 — Remodeling · Weeks 3-6+ Months</div><p>Type III → Type I collagen. Organized along stress lines. Concentric = moderate stress. Eccentric = highest demand — remodeling stimulus if mature, re-tear if too early.</p></div>
             <div class="bio warn"><div class="bt">Why Re-Tears Happen</div><p>Scar is stiffer than original muscle. Junction between scar and healthy tissue = weakest link. Re-tears at margins. Bulletproofing = surrounding tissue strong enough the junction never sees failure-threshold forces.</p></div>
             <div class="bio warn"><div class="bt">Peptide False Confidence</div><p>BPC-157/TB-500 accelerate early repair. Pain drops. But collagen maturation runs on its own clock. Tissue feels healed while architecture is immature. Gates test structure, not perception.</p></div>
-            <div class="fl">PHASE ${PHASE} ACTIVE · ${PHASE < 5 ? 'UPDATE AT GATE 3' : 'SPEED + PLYO LIVE'}</div>`;
+            <div class="fl">Phase ${ROMAN[PHASE] || PHASE} active · ${PHASE < 5 ? 'Update at Gate 3' : 'Speed + Plyo live'}</div>`;
         }
+        a.classList.remove('enter');
+        void a.offsetWidth;
+        a.classList.add('enter');
+        upd();
     }
     ld();
     rn();
